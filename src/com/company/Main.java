@@ -16,6 +16,6 @@ public class Main {
     }
 
     private void start(){
-        System.out.println("ello");
+
     }
 }
