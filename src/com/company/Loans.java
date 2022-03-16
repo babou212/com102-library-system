@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Loans {
     public Loans() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File
-                ("/home/dylanc/IdeaProjects/librarySystem/src/com/company/LOANS.csv"));
+                ("/home/dylanc/IdeaProjects/library_System/src/LOANS.csv"));
         scanner.useDelimiter(",");  //setting comma as delimiter pattern
 
         while (scanner.hasNext()) {

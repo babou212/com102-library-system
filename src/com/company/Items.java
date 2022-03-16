@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Items {
     private final Scanner scanner = new Scanner(new File
-            ("/home/dylanc/IdeaProjects/librarySystem/src/com/company/ITEMS.csv"));
+            ("/home/dylanc/IdeaProjects/library_System/src/ITEMS.csv"));
 
     public Items() throws FileNotFoundException {
     }
