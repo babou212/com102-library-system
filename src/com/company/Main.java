@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
+    private final UserReader user = new UserReader();
+    private final ItemReader item = new ItemReader();
+    private final LoanReader loan = new LoanReader();
 
     public static void main(String[] args){
         Main main = new Main();
@@ -25,13 +28,16 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    ItemReader.readItemsCSV();
+                    item.readItemsCSV();
+                    item.printItems();
                     break;
                 case 2:
-                    LoanReader.readLoansCSV();
+                    loan.readLoansCSV();
+                    loan.printLoans();
                     break;
                 case 3:
-                    UserReader.readUserCSV();
+                    user.readUserCSV();
+                    user.printUsers();
                     break;
                 case 4:
                     System.out.println("Test1");

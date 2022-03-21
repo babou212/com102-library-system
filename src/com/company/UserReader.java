@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -12,8 +13,9 @@ import java.util.Arrays;
  */
 
 public class UserReader {
+    private final ArrayList<String> userArray = new ArrayList<>();
 
-    public static void readUserCSV(){
+    public void readUserCSV(){
         String loanPath = "/home/dylanc/IdeaProjects/library_System/src/USERS.csv";
         String line = null;
 
@@ -28,10 +30,15 @@ public class UserReader {
                 }
                 assert line != null;
                 String[] values = line.split(",");
-                System.out.println(Arrays.deepToString(values));
+                userArray.add(Arrays.toString(values));
             }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
+        }
+    }
+    public void printUsers(){
+        for (int i=1; i<userArray.size(); i++){
+            System.out.println(userArray.get(i));
         }
     }
 }
