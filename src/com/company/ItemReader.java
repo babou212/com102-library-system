@@ -6,6 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * Java class to read ITEMS.csv into array of objects
+ * Author Dylan Cree
+ */
+
 public class ItemReader {
 
     public static void readItemsCSV(){
@@ -23,7 +28,7 @@ public class ItemReader {
                 }
                 assert line != null;
                 String[] values = line.split(",");
-                System.out.println(Arrays.toString(values));
+                System.out.println(Arrays.deepToString(values));
             }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();

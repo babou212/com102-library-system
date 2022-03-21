@@ -28,7 +28,7 @@ public class UserReader {
                 }
                 assert line != null;
                 String[] values = line.split(",");
-                System.out.println(Arrays.toString(values));
+                System.out.println(Arrays.deepToString(values));
             }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();

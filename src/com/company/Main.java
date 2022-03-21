@@ -34,14 +34,15 @@ public class Main {
                     UserReader.readUserCSV();
                     break;
                 case 4:
-
+                    System.out.println("Test1");
                     break;
                 case 5:
-
+                    System.out.println("Test2");
                     break;
                 case 6:
                     quit = true;
                     System.out.println("Program has terminated");
+                    scanner.close(); // CLose scanner once program has terminated
                     break;
             }
         }
