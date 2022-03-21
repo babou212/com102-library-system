@@ -1,20 +1,17 @@
 package com.company;
 
-import com.opencsv.exceptions.CsvValidationException;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    private final Scanner scanner = new Scanner(System.in);
-    private final Loans loan = new Loans();
-    private final Users user = new Users();
-    private final Items item = new Items();
-    private final LoanReader loanReader = new LoanReader();
+        public Main() throws IOException{
+        }
+         private final Scanner scanner = new Scanner(System.in);
+         //private final Loans loan = new Loans();
+         private final LoanReader loanReader = new LoanReader();
 
-    public Main() throws IOException, CsvValidationException {
-    }
-
-    public static void main(String[] args) throws IOException, CsvValidationException {
+    public static void main(String[] args) throws IOException {
         Main main = new Main();
         main.start();
     }
@@ -23,11 +20,12 @@ public class Main {
         boolean quit = false;
         int choice;
         printInstructions();
+        //loanReader.loanPrint();
 
         while (!quit){
                 System.out.println("Enter your choice: ");
                 choice = scanner.nextInt();
-                scanner.nextLine();
+                scanner.nextLine(); // Scanner nextline call to clear input buffer
 
             switch (choice){
                 case 0:
@@ -53,7 +51,7 @@ public class Main {
                     System.out.println("Program has terminated");
                     break;
             }
-            }
+        }
     }
 
     private static void printInstructions(){

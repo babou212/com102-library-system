@@ -1,26 +1,25 @@
 package com.company;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
+/**
+ * Java class to read LOANS.csv into array of objects
+ * Author Dylan Cree
+ */
 
 public class LoanReader {
-    private final List<List<String>> loansArray = new ArrayList<>();
-    public LoanReader() throws CsvValidationException, IOException {
-        try (CSVReader csvReader = new CSVReader(
-                new FileReader("/home/dylanc/IdeaProjects/library_System/src/LOANS.csv"))) {
-            String[] val = null;
+    //private List<Loans> loansArrayList =
 
-            while((val = csvReader.readNext()) != null) {
-                loansArray.add(Arrays.asList(val));
-            }
+    public LoanReader() throws IOException {
+        String loanPath = "/home/dylanc/IdeaProjects/library_System/src/LOANS.csv";
+        String line;
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(loanPath));
+        while ((line = bufferedReader.readLine()) != null){
+            String[] values = line.split(",");
+            System.out.println(Arrays.toString(values));
         }
-    }
-    public void loanPrint(){
-        System.out.println(loansArray);
     }
 }
