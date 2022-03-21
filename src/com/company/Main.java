@@ -25,13 +25,13 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-
+                    ItemReader.readItemsCSV();
                     break;
                 case 2:
                     LoanReader.readLoansCSV();
                     break;
                 case 3:
-
+                    UserReader.readUserCSV();
                     break;
                 case 4:
 
@@ -51,8 +51,8 @@ public class Main {
         System.out.println("\nPress ");
         System.out.println("\t 0 - To print menu options.");
         System.out.println("\t 1 - To print the list of Items.");
-        System.out.println("\t 2 - To view current active loans");
-        System.out.println("\t 3 - To modify an item in the list.");
+        System.out.println("\t 2 - To view current active loans.");
+        System.out.println("\t 3 - To view list of users.");
         System.out.println("\t 4 - To remove an item from the list.");
         System.out.println("\t 5 - To search for an item in the list.");
         System.out.println("\t 6 - TO quit the application.");
