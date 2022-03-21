@@ -1,33 +1,26 @@
 package com.company;
 
-
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-        public Main() throws IOException{
-        }
-         private final Scanner scanner = new Scanner(System.in);
-         //private final Loans loan = new Loans();
-         private final LoanReader loanReader = new LoanReader();
+    private final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Main main = new Main();
         main.start();
     }
 
-    private void start(){
+    public void start(){
         boolean quit = false;
-        int choice;
+        int menu;
         printInstructions();
-        //loanReader.loanPrint();
 
         while (!quit){
                 System.out.println("Enter your choice: ");
-                choice = scanner.nextInt();
+                menu = scanner.nextInt();
                 scanner.nextLine(); // Scanner nextline call to clear input buffer
 
-            switch (choice){
+            switch (menu){
                 case 0:
                     printInstructions();
                     break;
@@ -35,7 +28,7 @@ public class Main {
 
                     break;
                 case 2:
-
+                    LoanReader.readLoansCSV();
                     break;
                 case 3:
 
@@ -56,9 +49,9 @@ public class Main {
 
     private static void printInstructions(){
         System.out.println("\nPress ");
-        System.out.println("\t 0 - To print choice options.");
+        System.out.println("\t 0 - To print menu options.");
         System.out.println("\t 1 - To print the list of Items.");
-        System.out.println("\t 2 - To add an item to the list.");
+        System.out.println("\t 2 - To view current active loans");
         System.out.println("\t 3 - To modify an item in the list.");
         System.out.println("\t 4 - To remove an item from the list.");
         System.out.println("\t 5 - To search for an item in the list.");

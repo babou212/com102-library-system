@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -11,15 +12,26 @@ import java.util.Arrays;
  */
 
 public class LoanReader {
-    //private List<Loans> loansArrayList =
 
-    public LoanReader() throws IOException {
+    public static void readLoansCSV(){
         String loanPath = "/home/dylanc/IdeaProjects/library_System/src/LOANS.csv";
-        String line;
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(loanPath));
-        while ((line = bufferedReader.readLine()) != null){
-            String[] values = line.split(",");
-            System.out.println(Arrays.toString(values));
+        String line = null;
+
+        BufferedReader bufferedReader;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(loanPath));
+            while (true) {
+                try {
+                    if ((line = bufferedReader.readLine()) == null) break;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                assert line != null;
+                String[] values = line.split(",");
+                System.out.println(Arrays.toString(values));
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
         }
     }
 }
