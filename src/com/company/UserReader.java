@@ -36,6 +36,7 @@ public class UserReader {
             ex.printStackTrace();
         }
     }
+
     public void printUsers(){
         for (int i=1; i<userArray.size(); i++){
             System.out.println(userArray.get(i));

@@ -13,7 +13,7 @@ public class Main {
         main.start();
     }
 
-    public void start(){
+    private void start(){
         boolean quit = false;
         int menu;
         printInstructions();
