@@ -26,19 +26,19 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    UserReader.userConverter();
-                    break;
-                case 2:
                     ItemReader.itemConverter();
                     break;
-                case 3:
+                case 2:
                     LoanReader.loanConverter();
                     break;
+                case 3:
+                    System.out.println("Test");
+                    break;
                 case 4:
-                    System.out.println("Test1");
+                    System.out.println("Test--");
                     break;
                 case 5:
-                    System.out.println("Test2");
+                    System.out.println("Test---");
                     break;
                 case 6:
                     quit = true;
@@ -51,12 +51,12 @@ public class Main {
 
     private static void printInstructions(){
         System.out.println("\nPress ");
-        System.out.println("\t 0 - To print menu options.");
-        System.out.println("\t 1 - To print the list of Items.");
-        System.out.println("\t 2 - To view current active loans.");
-        System.out.println("\t 3 - To view list of users.");
-        System.out.println("\t 4 - To remove an item from the list.");
-        System.out.println("\t 5 - To search for an item in the list.");
-        System.out.println("\t 6 - TO quit the application.");
+        System.out.println("\t 0 - To print menu options");
+        System.out.println("\t 1 - To print the list of Items");
+        System.out.println("\t 2 - To view current active loans");
+        System.out.println("\t 3 - To =========================");
+        System.out.println("\t 4 - To =========================");
+        System.out.println("\t 5 - To =========================");
+        System.out.println("\t 6 - TO quit the application");
     }
 }

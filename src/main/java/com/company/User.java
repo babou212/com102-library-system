@@ -16,10 +16,6 @@ public class User {
     @CsvBindByName(column = "email")
     private String email;
 
-    public User() {
-
-    }
-
     @Override
     public String toString() {
         return "User{" +
