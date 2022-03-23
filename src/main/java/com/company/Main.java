@@ -1,29 +1,17 @@
 package com.company;
 
-import com.opencsv.bean.CsvToBeanBuilder;
-
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
-    private final User user = new User();
 
     public static void main(String[] args) throws FileNotFoundException {
-        String filePath = "/home/dylanc/IdeaProjects/library_System/src/main/java/USERS.csv";
-
-        List<User> beans = new CsvToBeanBuilder<User>(new FileReader(filePath))
-                .withType(User.class).build().parse();
-
-        beans.forEach(System.out::println);
-
         Main main = new Main();
-        main.start(beans);
+        main.start();
     }
 
-    private void start(List<User> beans ) {
+    private void start() throws FileNotFoundException {
         boolean quit = false;
         int menu;
         printInstructions();
@@ -38,13 +26,13 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    beans.forEach(System.out::println);
+                    UserReader.userConverter();
                     break;
                 case 2:
-
+                    ItemReader.itemConverter();
                     break;
                 case 3:
-
+                    LoanReader.loanConverter();
                     break;
                 case 4:
                     System.out.println("Test1");
