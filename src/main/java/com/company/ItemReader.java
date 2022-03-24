@@ -12,12 +12,13 @@ import java.util.List;
  */
 
 public class ItemReader {
-    public static void itemConverter() throws FileNotFoundException {
+    public static List<Item> itemConverter() throws FileNotFoundException {
         String filePath = "/home/dylanc/IdeaProjects/library_System/src/main/java/ITEMS.csv";
 
         List<Item> beans = new CsvToBeanBuilder<Item>(new FileReader(filePath))
                 .withType(Item.class).build().parse();
 
         //beans.forEach(System.out::println);
+        return beans;
     }
 }

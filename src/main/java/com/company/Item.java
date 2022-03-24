@@ -2,7 +2,9 @@ package com.company;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     @CsvBindByName(column = "Barcode")
     private String barcode;
 
@@ -17,6 +19,9 @@ public class Item {
 
     @CsvBindByName(column = "ISBN")
     private String ISBN;
+
+    public Item() {
+    }
 
     @Override
     public String toString() {

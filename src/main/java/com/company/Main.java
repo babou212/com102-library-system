@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -14,9 +15,11 @@ public class Main {
     private void start() throws FileNotFoundException {
         boolean quit = false;
         int menu;
+        UserReader.userConverter(); // Calling the classes and methods to populate object attributes with data at start
+        List<Item> item = ItemReader.itemConverter();
+        List<Loan> loan = LoanReader.loanConverter();
+        List<User> user = UserReader.userConverter();
         printInstructions();
-        ItemReader.itemConverter(); // Calling the classes and methods to populate class attributes with data at start
-        LoanReader.loanConverter();
 
         while (!quit){
                 System.out.println("Enter your choice: ");
@@ -28,13 +31,13 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    ItemReader.itemConverter();
+                    item.forEach(System.out::println);
                     break;
                 case 2:
-                    LoanReader.printLoan();
+                    loan.forEach(System.out::println);
                     break;
                 case 3:
-                    System.out.println("Test");
+                    user.forEach(System.out::println);
                     break;
                 case 4:
                     System.out.println("Test--");

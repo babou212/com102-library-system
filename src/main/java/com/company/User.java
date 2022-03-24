@@ -2,7 +2,9 @@ package com.company;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     @CsvBindByName(column = "User_id")
     private String userId;
@@ -15,6 +17,9 @@ public class User {
     
     @CsvBindByName(column = "email")
     private String email;
+
+    public User() {
+    }
 
     @Override
     public String toString() {

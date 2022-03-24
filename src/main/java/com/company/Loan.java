@@ -2,7 +2,9 @@ package com.company;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class Loan {
+import java.io.Serializable;
+
+public class Loan implements Serializable {
     @CsvBindByName(column = "Barcode")
     private String barcode;
 
@@ -12,8 +14,14 @@ public class Loan {
     @CsvBindByName(column = "Issue_Date")
     private String issueDate;
 
+    @CsvBindByName(column = "Due_Date")
+    private String dueDate;
+
     @CsvBindByName(column = "numRenews")
     private int numRenews;
+
+    public Loan() {
+    }
 
     @Override
     public String toString() {
@@ -21,6 +29,7 @@ public class Loan {
                 "barcode='" + barcode + '\'' +
                 ", userId='" + userId + '\'' +
                 ", issueDate='" + issueDate + '\'' +
+                ", dueDate='" + dueDate + '\'' +
                 ", numRenews=" + numRenews +
                 '}';
     }
@@ -47,6 +56,14 @@ public class Loan {
 
     public void setIssueDate(String issueDate) {
         this.issueDate = issueDate;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
     public int getNumRenews() {
