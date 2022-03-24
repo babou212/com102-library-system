@@ -24,4 +24,36 @@ public class Loan {
                 ", numRenews=" + numRenews +
                 '}';
     }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(String issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public int getNumRenews() {
+        return numRenews;
+    }
+
+    public void setNumRenews(int numRenews) {
+        this.numRenews = numRenews;
+    }
 }
