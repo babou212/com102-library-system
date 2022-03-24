@@ -19,6 +19,6 @@ public class UserReader {
         List<User> beans = new CsvToBeanBuilder<User>(new FileReader(filePath))
                 .withType(User.class).build().parse();
 
-        beans.forEach(System.out::println);
+        //beans.forEach(System.out::println);
     }
 }

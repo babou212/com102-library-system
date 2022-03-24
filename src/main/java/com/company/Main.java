@@ -15,6 +15,8 @@ public class Main {
         boolean quit = false;
         int menu;
         printInstructions();
+        ItemReader.itemConverter(); // Calling the classes and methods to populate class attributes with data at start
+        LoanReader.loanConverter();
 
         while (!quit){
                 System.out.println("Enter your choice: ");
@@ -29,7 +31,7 @@ public class Main {
                     ItemReader.itemConverter();
                     break;
                 case 2:
-                    LoanReader.loanConverter();
+                    LoanReader.printLoan();
                     break;
                 case 3:
                     System.out.println("Test");
