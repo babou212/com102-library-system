@@ -14,8 +14,7 @@ public class Main {
 
     private void start() throws FileNotFoundException {
         boolean quit = false;
-        int menu;
-        UserReader.userConverter(); // Calling the classes and methods to populate object attributes with data at start
+        int menu;        // Calling the classes and methods to populate object attributes with data at start
         List<Item> item = ItemReader.itemConverter();
         List<Loan> loan = LoanReader.loanConverter();
         List<User> user = UserReader.userConverter();
@@ -31,7 +30,7 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    item.forEach(System.out::println);
+                    item.forEach(System.out::println);  // Printing stream to print all list objects on new line
                     break;
                 case 2:
                     loan.forEach(System.out::println);

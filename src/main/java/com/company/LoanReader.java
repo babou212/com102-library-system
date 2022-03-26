@@ -16,9 +16,11 @@ import java.util.List;
         String filePath = "/home/dylanc/IdeaProjects/library_System/src/main/java/LOANS.csv";
 
         List<Loan> beans = new CsvToBeanBuilder<Loan>(new FileReader(filePath))
-                .withType(Loan.class).build().parse();
+                .withType(Loan.class)
+                .build()
+                .parse();
 
-        beans.forEach(System.out::println);
+        //beans.forEach(System.out::println); print statement to check the output was correct
         return beans;
     }
 }
