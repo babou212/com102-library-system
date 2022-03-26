@@ -12,10 +12,10 @@ public class Main {
         main.start();
     }
 
-    private void start() throws FileNotFoundException {
+    private void start() throws FileNotFoundException { // Method to control the operation of the program
         boolean quit = false;
-        int menu;        // Calling the classes and methods to populate object attributes with data at start
-        List<Item> item = ItemReader.itemConverter();
+        int menu;
+        List<Item> item = ItemReader.itemConverter(); // Calling the classes and methods to populate program with data
         List<Loan> loan = LoanReader.loanConverter();
         List<User> user = UserReader.userConverter();
         printInstructions();
@@ -53,7 +53,7 @@ public class Main {
         }
     }
 
-    private static void printInstructions(){
+    private static void printInstructions(){  // Method to print menu options to the user
         System.out.println("\nPress ");
         System.out.println("\t 0 - To print menu options");
         System.out.println("\t 1 - To print the list of Items");
