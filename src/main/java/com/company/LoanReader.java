@@ -15,12 +15,12 @@ import java.util.List;
     public static List<Loan> loanConverter() throws FileNotFoundException {
         String filePath = "/home/dylanc/IdeaProjects/library_System/src/main/java/LOANS.csv";
 
-        List<Loan> beans = new CsvToBeanBuilder<Loan>(new FileReader(filePath))
+        List<Loan> loans = new CsvToBeanBuilder<Loan>(new FileReader(filePath))
                 .withType(Loan.class)
                 .build()
                 .parse();
 
         //beans.forEach(System.out::println);  // debug statement to check output was correct
-        return beans;
+        return loans;
     }
 }

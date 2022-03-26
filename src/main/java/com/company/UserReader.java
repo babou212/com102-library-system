@@ -16,10 +16,10 @@ public class UserReader {
     public static List<User> userConverter() throws FileNotFoundException {
         String filePath = "/home/dylanc/IdeaProjects/library_System/src/main/java/USERS.csv";
 
-        List<User> beans = new CsvToBeanBuilder<User>(new FileReader(filePath))
+        List<User> users = new CsvToBeanBuilder<User>(new FileReader(filePath))
                 .withType(User.class).build().parse();
 
         //beans.forEach(System.out::println);  // debug statement to check output was correct
-        return beans;
+        return users;
     }
 }
