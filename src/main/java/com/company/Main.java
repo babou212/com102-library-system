@@ -15,9 +15,9 @@ public class Main {
     private void start() throws FileNotFoundException { // Method to control the operation of the program
         boolean quit = false;
         int menu;
-        List<Item> item = ItemReader.itemConverter(); // Calling the classes and methods to populate program with data
-        List<Loan> loan = LoanReader.loanConverter();
-        List<User> user = UserReader.userConverter();
+        List<Item> items = ItemReader.itemConverter(); // Calling the classes and methods to populate program with data
+        List<Loan> loans = LoanReader.loanConverter();
+        List<User> users = UserReader.userConverter();
         printInstructions();
 
         while (!quit){
@@ -30,13 +30,13 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    item.forEach(System.out::println);  // Printing stream to print all list objects on new line
+                    items.forEach(System.out::println);  // Printing stream to print all list objects on new line
                     break;
                 case 2:
-                    loan.forEach(System.out::println);
+                    loans.forEach(System.out::println);
                     break;
                 case 3:
-                    user.forEach(System.out::println);
+                    users.forEach(System.out::println);
                     break;
                 case 4:
                     System.out.println("Test--");
