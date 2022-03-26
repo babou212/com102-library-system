@@ -9,8 +9,9 @@ import java.io.Serializable;
  // * Author Dylan Cree
  */
 
-public class Loan implements Serializable {
-    @CsvBindByName(column = "Barcode")
+public class Loan implements Serializable { // Serializable interface for java beans class
+
+    @CsvBindByName(column = "Barcode")  // @CsvBindByName openCSV command
     private String barcode;
 
     @CsvBindByName(column = "User_id")
@@ -25,7 +26,7 @@ public class Loan implements Serializable {
     @CsvBindByName(column = "numRenews")
     private int numRenews;
 
-    public Loan() {
+    public Loan() {  // No args constructor for java beans class
     }
 
     @Override

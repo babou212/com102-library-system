@@ -9,9 +9,9 @@ import java.io.Serializable;
  // * Author Dylan Cree
  */
 
-public class User implements Serializable {
+public class User implements Serializable { // Serializable interface for java beans class
 
-    @CsvBindByName(column = "User_id")
+    @CsvBindByName(column = "User_id") // @CsvBindByName openCSV command
     private String userId;
     
     @CsvBindByName(column = "first_name")
@@ -23,7 +23,7 @@ public class User implements Serializable {
     @CsvBindByName(column = "email")
     private String email;
 
-    public User() {
+    public User() {  // No args constructor for java beans class
     }
 
     public User(String userId, String firstName, String lastName, String email) {
