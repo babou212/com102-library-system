@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.util.List;
 
 /**
- * Java class to read ITEMS.csv
+ * Java class to read ITEMS.csv using openCSV library
  * Author Dylan Cree
  */
 
