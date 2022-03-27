@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
+    private List<Item> items = ItemReader.itemConverter(); // Calling the classes and methods to populate program with data
+    private List<Loan> loans = LoanReader.loanConverter();
+    private List<User> users = UserReader.userConverter();
+
+    public Main() throws FileNotFoundException {
+    }
 
     public static void main(String[] args) throws FileNotFoundException {
         Main main = new Main();
@@ -15,9 +21,7 @@ public class Main {
     private void start() throws FileNotFoundException { // Method to control the operation of the program
         boolean quit = false;
         int menu;
-        List<Item> items = ItemReader.itemConverter(); // Calling the classes and methods to populate program with data
-        List<Loan> loans = LoanReader.loanConverter();
-        List<User> users = UserReader.userConverter();
+
         printInstructions();
 
         while (!quit){
@@ -39,12 +43,18 @@ public class Main {
                     users.forEach(System.out::println);
                     break;
                 case 4:
-                    System.out.println("Test--");
+                    issueLoan();
                     break;
                 case 5:
                     System.out.println("Test---");
                     break;
                 case 6:
+                    System.out.println("test--");
+                    break;
+                case 7:
+                    System.out.println("test=====");
+                    break;
+                case 8:
                     quit = true;
                     System.out.println("Program has terminated");
                     scanner.close(); // CLose scanner once program has terminated
@@ -58,9 +68,33 @@ public class Main {
         System.out.println("\t 0 - To print menu options");
         System.out.println("\t 1 - To print the list of Items");
         System.out.println("\t 2 - To view current active loans");
-        System.out.println("\t 3 - To =========================");
-        System.out.println("\t 4 - To =========================");
-        System.out.println("\t 5 - To =========================");
-        System.out.println("\t 6 - TO quit the application");
+        System.out.println("\t 3 - To see list of current users");
+        System.out.println("\t 4 - To issue new loan");
+        System.out.println("\t 5 - To renew a loan");
+        System.out.println("\t 6 - To record a return of an item");
+        System.out.println("\t 7 - To view all items on loan and all items held");
+        System.out.println("\t 8 - TO quit the application");
+    }
+
+    private void issueLoan() {
+        System.out.println("Please enter userId");
+        String userId = scanner.nextLine();
+        System.out.println("Please enter item barcode");
+        String barcode = scanner.nextLine();
+
+        if(users.stream().anyMatch(user -> user.getUserId().equals(userId))
+                && items.stream().anyMatch(item -> item.getBarcode().equals(barcode))){
+
+            System.out.println("Enter current date in dd/mm/yr format");
+            String issueDate = scanner.nextLine();
+            System.out.println("Please enter due date");
+            String dueDate = scanner.nextLine();
+            int numRenews = 0;
+
+            Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
+            loans.add(loan);
+            System.out.println(loan);
+            loans.forEach(System.out::println);
+        }
     }
 }

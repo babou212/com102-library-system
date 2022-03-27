@@ -29,6 +29,14 @@ public class Loan implements Serializable { // Serializable interface for java b
     public Loan() {  // No args constructor for java beans class
     }
 
+    public Loan(String barcode, String userId, String issueDate, String dueDate, int numRenews) {
+        this.barcode = barcode;
+        this.userId = userId;
+        this.issueDate = issueDate;
+        this.dueDate = dueDate;
+        this.numRenews = numRenews;
+    }
+
     @Override
     public String toString() {
         return "Loan{" +
