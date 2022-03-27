@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
-    private List<Item> items = ItemReader.itemConverter(); // Calling the classes and methods to populate program with data
-    private List<Loan> loans = LoanReader.loanConverter();
-    private List<User> users = UserReader.userConverter();
+    private final List<Item> items = ItemReader.itemConverter();
+    private final List<Loan> loans = LoanReader.loanConverter();
+    private final List<User> users = UserReader.userConverter();
 
     public Main() throws FileNotFoundException {
     }
@@ -18,7 +18,7 @@ public class Main {
         main.start();
     }
 
-    private void start() throws FileNotFoundException { // Method to control the operation of the program
+    private void start() { // Method to control the operation of the program
         boolean quit = false;
         int menu;
 
@@ -95,6 +95,8 @@ public class Main {
             loans.add(loan);
             System.out.println(loan);
             loans.forEach(System.out::println);
+        }else {
+            System.out.println("userId or barcode not found");
         }
     }
 }
