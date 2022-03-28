@@ -27,7 +27,7 @@ public class Service {
     public Service() throws FileNotFoundException {
     }
 
-    public void printInstructions(){  // Method to print menu options to the user
+    public void printInstructions() {  // Method to print menu options to the user
         System.out.println("\nPress ");
         System.out.println("\t 0 - To print menu options");
         System.out.println("\t 1 - To print the list of Items");
@@ -40,15 +40,15 @@ public class Service {
         System.out.println("\t 8 - TO quit the application");
     }
 
-    public void printLoans(){
+    public void printLoans() {
         loans.forEach(System.out::println); // Printing stream to print all list objects on new line
     }
 
-    public void printItems(){
+    public void printItems() {
         items.forEach(System.out::println);
     }
 
-    public void printUsers(){
+    public void printUsers() {
         users.forEach(System.out::println);
     }
 
@@ -59,12 +59,12 @@ public class Service {
         String barcode = scanner.nextLine();
 
         if(users.stream().anyMatch(user -> user.getUserId().equals(userId))
-                && items.stream().anyMatch(item -> item.getBarcode().equals(barcode))){
+                && items.stream().anyMatch(item -> item.getBarcode().equals(barcode))) {
             LocalDate issueDate = LocalDate.now();
             LocalDate currentDate = LocalDate.now();
             int numRenews = 0;
 
-            if(items.stream().anyMatch(item -> item.getType().equals("Book"))){
+            if(items.stream().anyMatch(item -> item.getType().equals("Book"))) {
                 LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
                 Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
                 loans.add(loan);
@@ -80,11 +80,11 @@ public class Service {
         }
     }
 
-    public void returnLoan(){
+    public void returnLoan() {
         System.out.println("Please enter barcode for the loan you wish to remove");
         String barcode = scanner.nextLine();
 
-        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))){
+        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
             loans.removeIf(loans -> loans.getBarcode().equals(barcode));
             loans.forEach(System.out::println);
             System.out.println("Loan has been removed from the list");

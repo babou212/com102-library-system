@@ -21,29 +21,29 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException, CsvRequiredFieldEmptyException,
-            CsvDataTypeMismatchException, ParseException {
+            CsvDataTypeMismatchException {
         Main main = new Main();
         main.start();
     }
 
     private void start() throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException,
-            IOException{ // Method to control the operation of the program
+            IOException { // Method to control the operation of the program
         boolean quit = false;
         int menu = 0;
 
         service.printInstructions(); // Method Call to print program instructions
 
-        while (!quit){
+        while (!quit) {
                 System.out.println("Enter your choice: ");
 
-                if(scanner.hasNextInt()){
+                if(scanner.hasNextInt()) {
                     menu = scanner.nextInt();
                 }else {
                     System.out.println("Please enter a valid option");
                     scanner.next(); // Scanner next call to clear input buffer
                 }
 
-            switch (menu){
+            switch (menu) {
                 case 0:
                     service.printInstructions();
                     break;
