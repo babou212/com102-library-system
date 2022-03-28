@@ -107,6 +107,9 @@ public class Main {
         if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))){
             loans.removeIf(loans -> loans.getBarcode().equals(barcode));
             loans.forEach(System.out::println);
+            System.out.println("Loan has been removed from the list");
+        }else {
+            System.out.println("Barcode " + barcode + " was invalid or there are no active loans please try again");
         }
     }
 }
