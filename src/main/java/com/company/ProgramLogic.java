@@ -18,6 +18,19 @@ public class ProgramLogic {
     public ProgramLogic() throws FileNotFoundException {
     }
 
+    public void printInstructions(){  // Method to print menu options to the user
+        System.out.println("\nPress ");
+        System.out.println("\t 0 - To print menu options");
+        System.out.println("\t 1 - To print the list of Items");
+        System.out.println("\t 2 - To view current active loans");
+        System.out.println("\t 3 - To see list of current users");
+        System.out.println("\t 4 - To issue new loan");
+        System.out.println("\t 5 - To renew a loan");
+        System.out.println("\t 6 - To record a return of an item");
+        System.out.println("\t 7 - To view all items on loan and all items held");
+        System.out.println("\t 8 - TO quit the application");
+    }
+
     public void printLoans(){
         loans.forEach(System.out::println); // Printing stream to print all list objects on new line
     }
