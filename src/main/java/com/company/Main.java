@@ -22,14 +22,19 @@ public class Main {
 
     private void start() { // Method to control the operation of the program
         boolean quit = false;
-        int menu;
+        int menu = 0;
 
         printInstructions();
 
         while (!quit){
                 System.out.println("Enter your choice: ");
-                menu = scanner.nextInt();
-                scanner.nextLine(); // Scanner nextline call to clear input buffer
+
+                if(scanner.hasNextInt()){
+                    menu = scanner.nextInt();
+
+                }else {
+                    scanner.next(); // Scanner next call to clear input buffer
+                }
 
             switch (menu){
                 case 0:
