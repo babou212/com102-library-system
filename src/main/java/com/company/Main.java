@@ -3,6 +3,7 @@ package com.company;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
@@ -49,7 +50,7 @@ public class Main {
                     System.out.println("Test---");
                     break;
                 case 6:
-                    System.out.println("test--");
+                    returnLoan();
                     break;
                 case 7:
                     System.out.println("test=====");
@@ -97,6 +98,16 @@ public class Main {
             loans.forEach(System.out::println);
         }else {
             System.out.println("userId or barcode not found");
+        }
+    }
+
+    private void returnLoan(){
+        System.out.println("Please enter barcode for the loan you wish to remove");
+        String barcode = scanner.nextLine();
+
+        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))){
+            loans.removeIf(loans -> loans.getBarcode().equals(barcode));
+            loans.forEach(System.out::println);
         }
     }
 }
