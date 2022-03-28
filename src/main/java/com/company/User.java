@@ -26,13 +26,6 @@ public class User implements Serializable { // Serializable interface for java b
     public User() {  // No args constructor for java beans class
     }
 
-    public User(String userId, String firstName, String lastName, String email) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
     @Override
     public String toString() {
         return "User{" +
