@@ -18,7 +18,6 @@ public class ItemReader {
         List<Item> items = new CsvToBeanBuilder<Item>(new FileReader(filePath))
                 .withType(Item.class).build().parse();
 
-        //beans.forEach(System.out::println);  // debug statement to check output was correct
         return items;
     }
 }

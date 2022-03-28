@@ -61,24 +61,22 @@ public class Service {
         if(users.stream().anyMatch(user -> user.getUserId().equals(userId))
                 && items.stream().anyMatch(item -> item.getBarcode().equals(barcode))){
             LocalDate issueDate = LocalDate.now();
+            LocalDate currentDate = LocalDate.now();
+            int numRenews = 0;
 
             if(items.stream().anyMatch(item -> item.getType().equals("Book"))){
-                LocalDate currentDate1 = LocalDate.now();
-                LocalDate dueDate = currentDate1.plus(2, ChronoUnit.WEEKS);
-                int numRenews = 0;
+                LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
                 Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
                 loans.add(loan);
                 loans.forEach(System.out::println);
             }else {
-                LocalDate currentDate2 = LocalDate.now();
-                LocalDate dueDate = currentDate2.plus(1, ChronoUnit.WEEKS);
-                int numRenews = 0;
+                LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                 Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
                 loans.add(loan);
                 loans.forEach(System.out::println);
             }
         }else {
-            System.out.println("userId or barcode not found");
+            System.out.println("userId or barcode invalid");
         }
     }
 
