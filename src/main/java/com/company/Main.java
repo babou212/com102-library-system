@@ -1,14 +1,16 @@
 package com.company;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Scanner;
+
+/**
+ // * Main Java class for controlling the program
+ // * Author Dylan Cree
+ */
 
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
-    private final List<Item> items = ItemReader.itemConverter();
-    private final List<Loan> loans = LoanReader.loanConverter();
-    private final List<User> users = UserReader.userConverter();
+    private final ProgramLogic programLogic = new ProgramLogic();
 
     public Main() throws FileNotFoundException {
     }
@@ -34,22 +36,22 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    items.forEach(System.out::println);  // Printing stream to print all list objects on new line
+                    programLogic.printItems();
                     break;
                 case 2:
-                    loans.forEach(System.out::println);
+                    programLogic.printLoans();
                     break;
                 case 3:
-                    users.forEach(System.out::println);
+                    programLogic.printUsers();
                     break;
                 case 4:
-                    issueLoan();
+                    programLogic.issueLoan();
                     break;
                 case 5:
                     System.out.println("Test---");
                     break;
                 case 6:
-                    returnLoan();
+                    programLogic.returnLoan();
                     break;
                 case 7:
                     System.out.println("test=====");
@@ -74,42 +76,5 @@ public class Main {
         System.out.println("\t 6 - To record a return of an item");
         System.out.println("\t 7 - To view all items on loan and all items held");
         System.out.println("\t 8 - TO quit the application");
-    }
-
-    private void issueLoan() {
-        System.out.println("Please enter userId");
-        String userId = scanner.nextLine();
-        System.out.println("Please enter item barcode");
-        String barcode = scanner.nextLine();
-
-        if(users.stream().anyMatch(user -> user.getUserId().equals(userId))
-                && items.stream().anyMatch(item -> item.getBarcode().equals(barcode))){
-
-            System.out.println("Enter current date in dd/mm/yr format");
-            String issueDate = scanner.nextLine();
-            System.out.println("Please enter due date");
-            String dueDate = scanner.nextLine();
-            int numRenews = 0;
-
-            Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
-            loans.add(loan);
-            System.out.println(loan);
-            loans.forEach(System.out::println);
-        }else {
-            System.out.println("userId or barcode not found");
-        }
-    }
-
-    private void returnLoan(){
-        System.out.println("Please enter barcode for the loan you wish to remove");
-        String barcode = scanner.nextLine();
-
-        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))){
-            loans.removeIf(loans -> loans.getBarcode().equals(barcode));
-            loans.forEach(System.out::println);
-            System.out.println("Loan has been removed from the list");
-        }else {
-            System.out.println("Barcode " + barcode + " was invalid or there are no active loans please try again");
-        }
     }
 }
