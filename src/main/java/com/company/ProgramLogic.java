@@ -68,7 +68,6 @@ public class ProgramLogic {
 
             Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
             loans.add(loan);
-            System.out.println(loan);
             loans.forEach(System.out::println);
         }else {
             System.out.println("userId or barcode not found");
