@@ -101,4 +101,18 @@ public class Service {
         beanToCsv.write(loans);
         writer.close();
     }
+
+    public void renewLoan(){
+        System.out.println("Please enter barcode for loan");
+        String barcode = scanner.nextLine();
+
+        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))&&
+                items.stream().anyMatch(items -> items.getType().equals("Book"))){
+
+                LocalDate currentDate = LocalDate.now();
+                LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
+                loans.forEach(loans -> loans.setDueDate(dueDate));
+
+        }
+    }
 }

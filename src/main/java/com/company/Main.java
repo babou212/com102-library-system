@@ -59,7 +59,7 @@ public class Main {
                     service.issueLoan();
                     break;
                 case 5:
-                    System.out.println("Test---");
+                    service.renewLoan();
                     break;
                 case 6:
                     service.returnLoan();
