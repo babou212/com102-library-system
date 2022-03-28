@@ -9,7 +9,13 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -51,7 +57,7 @@ public class ProgramLogic {
         users.forEach(System.out::println);
     }
 
-    public void issueLoan() {
+    public void issueLoan() throws ParseException {
         System.out.println("Please enter userId");
         String userId = scanner.nextLine();
         System.out.println("Please enter item barcode");
@@ -59,11 +65,15 @@ public class ProgramLogic {
 
         if(users.stream().anyMatch(user -> user.getUserId().equals(userId))
                 && items.stream().anyMatch(item -> item.getBarcode().equals(barcode))){
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
-            System.out.println("Enter current date in dd/mm/yr format");
-            String issueDate = scanner.nextLine();
+            System.out.println("Enter current date in dd/mm/yyyy format");
+            String iD = scanner.nextLine();
+            LocalDate issueDate = formatter.parse(iD).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
             System.out.println("Please enter due date");
-            String dueDate = scanner.nextLine();
+            String dD = scanner.nextLine();
+            LocalDate dueDate = formatter.parse(dD).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             int numRenews = 0;
 
             Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);

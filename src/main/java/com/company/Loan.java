@@ -1,8 +1,10 @@
 package com.company;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvDate;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  // * Java beans data class for serialization and deserialization
@@ -18,10 +20,12 @@ public class Loan implements Serializable { // Serializable interface for java b
     private String userId;
 
     @CsvBindByName(column = "Issue_Date")
-    private String issueDate;
+    @CsvDate("dd/MM/yyyy")
+    private LocalDate issueDate;
 
     @CsvBindByName(column = "Due_Date")
-    private String dueDate;
+    @CsvDate("dd/MM/yyyy")
+    private LocalDate dueDate;
 
     @CsvBindByName(column = "numRenews")
     private int numRenews;
@@ -29,7 +33,7 @@ public class Loan implements Serializable { // Serializable interface for java b
     public Loan() {  // No args constructor for java beans class
     }
 
-    public Loan(String barcode, String userId, String issueDate, String dueDate, int numRenews) {
+    public Loan(String barcode, String userId, LocalDate issueDate, LocalDate dueDate, int numRenews) {
         this.barcode = barcode;
         this.userId = userId;
         this.issueDate = issueDate;
@@ -42,8 +46,10 @@ public class Loan implements Serializable { // Serializable interface for java b
         return "Loan{" +
                 "barcode='" + barcode + '\'' +
                 ", userId='" + userId + '\'' +
-                ", issueDate='" + issueDate + '\'' +
-                ", dueDate='" + dueDate + '\'' +
+                ", issueDate='" + issueDate.getDayOfMonth() + "/" + issueDate.getMonth().getValue()
+                + "/" + issueDate.getYear() + '\'' +
+                ", dueDate='" + dueDate.getDayOfMonth() + "/" + dueDate.getMonth().getValue() + "/"
+                + dueDate.getYear() +  '\'' +
                 ", numRenews=" + numRenews +
                 '}';
     }
@@ -64,19 +70,19 @@ public class Loan implements Serializable { // Serializable interface for java b
         this.userId = userId;
     }
 
-    public String getIssueDate() {
+    public LocalDate getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(String issueDate) {
+    public void setIssueDate(LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
-    public String getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 

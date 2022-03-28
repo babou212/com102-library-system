@@ -5,6 +5,7 @@ import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 /**
@@ -20,13 +21,13 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException, CsvRequiredFieldEmptyException,
-            CsvDataTypeMismatchException {
+            CsvDataTypeMismatchException, ParseException {
         Main main = new Main();
         main.start();
     }
 
     private void start() throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException,
-            IOException { // Method to control the operation of the program
+            IOException, ParseException { // Method to control the operation of the program
         boolean quit = false;
         int menu = 0;
 
