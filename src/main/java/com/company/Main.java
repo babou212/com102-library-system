@@ -1,6 +1,10 @@
 package com.company;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -15,12 +19,14 @@ public class Main {
     public Main() throws FileNotFoundException {
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException, CsvRequiredFieldEmptyException,
+            CsvDataTypeMismatchException {
         Main main = new Main();
         main.start();
     }
 
-    private void start() { // Method to control the operation of the program
+    private void start() throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException,
+            IOException { // Method to control the operation of the program
         boolean quit = false;
         int menu = 0;
 
@@ -62,6 +68,7 @@ public class Main {
                     System.out.println("test=====");
                     break;
                 case 8:
+                    programLogic.writeLoan();
                     quit = true;
                     System.out.println("Program has terminated");
                     scanner.close(); // CLose scanner once program has terminated

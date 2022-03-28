@@ -1,6 +1,14 @@
 package com.company;
 
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 import java.util.Scanner;
 
@@ -78,5 +86,14 @@ public class ProgramLogic {
         }else {
             System.out.println("Barcode " + barcode + " was invalid or there are no active loans please try again");
         }
+    }
+
+    public void writeLoan() throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
+        String filePath = "/home/dylanc/IdeaProjects/library_System/src/main/java/LOANS.csv";
+
+        Writer writer = new FileWriter(filePath);
+        StatefulBeanToCsv<Loan> beanToCsv = new StatefulBeanToCsvBuilder<Loan>(writer).build();
+        beanToCsv.write(loans);
+        writer.close();
     }
 }
