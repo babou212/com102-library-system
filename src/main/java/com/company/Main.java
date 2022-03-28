@@ -31,7 +31,6 @@ public class Main {
 
                 if(scanner.hasNextInt()){
                     menu = scanner.nextInt();
-
                 }else {
                     System.out.println("Please enter a valid option");
                     scanner.next(); // Scanner next call to clear input buffer
