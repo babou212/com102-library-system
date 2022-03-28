@@ -9,13 +9,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 /**
  // * Java class to provide the logic for manipulating program data
@@ -56,7 +52,7 @@ public class Service {
         users.forEach(System.out::println);
     }
 
-    public void issueLoan() throws ParseException {
+    public void issueLoan() {
         System.out.println("Please enter userId");
         String userId = scanner.nextLine();
         System.out.println("Please enter item barcode");
@@ -64,20 +60,23 @@ public class Service {
 
         if(users.stream().anyMatch(user -> user.getUserId().equals(userId))
                 && items.stream().anyMatch(item -> item.getBarcode().equals(barcode))){
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            LocalDate issueDate = LocalDate.now();
 
-            System.out.println("Enter current date in dd/mm/yyyy format");
-            String iD = scanner.nextLine();
-            LocalDate issueDate = formatter.parse(iD).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-            System.out.println("Please enter due date");
-            String dD = scanner.nextLine();
-            LocalDate dueDate = formatter.parse(dD).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            int numRenews = 0;
-
-            Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
-            loans.add(loan);
-            loans.forEach(System.out::println);
+            if(items.stream().anyMatch(item -> item.getType().equals("Book"))){
+                LocalDate currentDate1 = LocalDate.now();
+                LocalDate dueDate = currentDate1.plus(2, ChronoUnit.WEEKS);
+                int numRenews = 0;
+                Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
+                loans.add(loan);
+                loans.forEach(System.out::println);
+            }else {
+                LocalDate currentDate2 = LocalDate.now();
+                LocalDate dueDate = currentDate2.plus(1, ChronoUnit.WEEKS);
+                int numRenews = 0;
+                Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
+                loans.add(loan);
+                loans.forEach(System.out::println);
+            }
         }else {
             System.out.println("userId or barcode not found");
         }

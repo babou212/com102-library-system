@@ -27,7 +27,7 @@ public class Main {
     }
 
     private void start() throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException,
-            IOException, ParseException { // Method to control the operation of the program
+            IOException{ // Method to control the operation of the program
         boolean quit = false;
         int menu = 0;
 

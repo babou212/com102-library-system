@@ -23,6 +23,9 @@ public class Item implements Serializable { // Serializable interface for java b
     @CsvBindByName(column = "Year")
     private String year;
 
+    @CsvBindByName(column = "Type")
+    private String type;
+
     @CsvBindByName(column = "ISBN")
     private String ISBN;
 
@@ -36,6 +39,7 @@ public class Item implements Serializable { // Serializable interface for java b
                 ", author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", year='" + year + '\'' +
+                ", type='" + type + '\'' +
                 ", ISBN='" + ISBN + '\'' +
                 '}';
     }
@@ -78,5 +82,13 @@ public class Item implements Serializable { // Serializable interface for java b
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
