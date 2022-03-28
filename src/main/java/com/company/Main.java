@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
-    private final ProgramLogic programLogic = new ProgramLogic();
+    private final Service service = new Service();
 
     public Main() throws FileNotFoundException {
     }
@@ -31,7 +31,7 @@ public class Main {
         boolean quit = false;
         int menu = 0;
 
-        programLogic.printInstructions(); // Method Call to print program instructions
+        service.printInstructions(); // Method Call to print program instructions
 
         while (!quit){
                 System.out.println("Enter your choice: ");
@@ -45,31 +45,31 @@ public class Main {
 
             switch (menu){
                 case 0:
-                    programLogic.printInstructions();
+                    service.printInstructions();
                     break;
                 case 1:
-                    programLogic.printItems();
+                    service.printItems();
                     break;
                 case 2:
-                    programLogic.printLoans();
+                    service.printLoans();
                     break;
                 case 3:
-                    programLogic.printUsers();
+                    service.printUsers();
                     break;
                 case 4:
-                    programLogic.issueLoan();
+                    service.issueLoan();
                     break;
                 case 5:
                     System.out.println("Test---");
                     break;
                 case 6:
-                    programLogic.returnLoan();
+                    service.returnLoan();
                     break;
                 case 7:
                     System.out.println("test=====");
                     break;
                 case 8:
-                    programLogic.writeLoan();
+                    service.writeLoan();
                     quit = true;
                     System.out.println("Program has terminated");
                     scanner.close(); // CLose scanner once program has terminated

@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -23,13 +22,13 @@ import java.util.Scanner;
  // * Author Dylan Cree
  */
 
-public class ProgramLogic {
+public class Service {
     private final Scanner scanner = new Scanner(System.in);
     private final List<Item> items = ItemReader.itemConverter();
     private final List<Loan> loans = LoanReader.loanConverter();
     private final List<User> users = UserReader.userConverter();
 
-    public ProgramLogic() throws FileNotFoundException {
+    public Service() throws FileNotFoundException {
     }
 
     public void printInstructions(){  // Method to print menu options to the user
