@@ -120,11 +120,13 @@ public class LoanService {
                     LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
                     loan.setDueDate(dueDate);
                     loan.setNumRenews(loan.getNumRenews() + 1);
+                    System.out.println("Book loan renewed");
                 } else if (results.get(0).getType().equals("Multimedia") && loan.getBarcode().equals(barcode) &&
                         loan.getNumRenews() < 2) {
                     LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                     loan.setDueDate(dueDate);
-                } else {
+                    System.out.println("Multimedia loan renewed");
+                } else if (loan.getBarcode().equals(barcode)){
                     System.out.println("Loan cannot be renewed");
                 }
             });
