@@ -77,7 +77,8 @@ public class Main {
             }
         }
     }
-    private static void printInstructions() {  // Method to print menu options to the user
+
+    private void printInstructions() {  // Method to print menu options to the user
         System.out.println("\nPress ");
         System.out.println("\t 0 - To print menu options");
         System.out.println("\t 1 - To print the list of Items");

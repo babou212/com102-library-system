@@ -106,7 +106,7 @@ public class LoanService {
     }
 
     public void renewLoan() {
-        System.out.println("Please enter barcode for loan");
+        System.out.println("Please enter barcode for loan renewal");
         String barcode = scanner.nextLine();
 
         if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
@@ -129,7 +129,7 @@ public class LoanService {
                 }
             });
         } else {
-            System.out.println("Barcode Invalid");
+            System.out.println("Barcode Invalid or item not currently on loan");
         }
     }
 }
