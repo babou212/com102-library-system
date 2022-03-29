@@ -48,27 +48,22 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    loanService.printItems();
-                    break;
-                case 2:
-                    loanService.printLoans();
-                    break;
-                case 3:
                     loanService.printUsers();
                     break;
-                case 4:
+                case 2:
                     loanService.issueLoan();
                     break;
-                case 5:
+                case 3:
                     loanService.renewLoan();
                     break;
-                case 6:
+                case 4:
                     loanService.returnItem();
                     break;
-                case 7:
-                    System.out.println("test=====");
+                case 5:
+                    loanService.printLoans();
+                    loanService.printItems();
                     break;
-                case 8:
+                case 6:
                     loanService.writeLoan();
                     quit = true;
                     System.out.println("Program has terminated");
