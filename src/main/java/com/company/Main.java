@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.service.LoanService;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
@@ -14,7 +15,7 @@ import java.util.Scanner;
 
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
-    private final Service service = new Service();
+    private final LoanService loanService = new LoanService();
 
     public Main() throws FileNotFoundException {
     }
@@ -30,7 +31,7 @@ public class Main {
         boolean quit = false;
         int menu = 0;
 
-        service.printInstructions(); // Method Call to print program instructions
+        printInstructions(); // Method Call to print program instructions
 
         while (!quit) {
                 System.out.println("Enter your choice: ");
@@ -44,36 +45,48 @@ public class Main {
 
             switch (menu) {
                 case 0:
-                    service.printInstructions();
+                    printInstructions();
                     break;
                 case 1:
-                    service.printItems();
+                    loanService.printItems();
                     break;
                 case 2:
-                    service.printLoans();
+                    loanService.printLoans();
                     break;
                 case 3:
-                    service.printUsers();
+                    loanService.printUsers();
                     break;
                 case 4:
-                    service.issueLoan();
+                    loanService.issueLoan();
                     break;
                 case 5:
-                    service.renewLoan();
+                    loanService.renewLoan();
                     break;
                 case 6:
-                    service.returnLoan();
+                    loanService.returnItem();
                     break;
                 case 7:
                     System.out.println("test=====");
                     break;
                 case 8:
-                    service.writeLoan();
+                    loanService.writeLoan();
                     quit = true;
                     System.out.println("Program has terminated");
                     scanner.close(); // CLose scanner once program has terminated
                     break;
             }
         }
+    }
+    private static void printInstructions() {  // Method to print menu options to the user
+        System.out.println("\nPress ");
+        System.out.println("\t 0 - To print menu options");
+        System.out.println("\t 1 - To print the list of Items");
+        System.out.println("\t 2 - To view current active loans");
+        System.out.println("\t 3 - To see list of current users");
+        System.out.println("\t 4 - To issue new loan");
+        System.out.println("\t 5 - To renew a loan");
+        System.out.println("\t 6 - To record a return of an item");
+        System.out.println("\t 7 - To view all items on loan and all items held");
+        System.out.println("\t 8 - TO quit the application");
     }
 }

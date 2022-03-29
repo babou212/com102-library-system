@@ -1,5 +1,6 @@
-package com.company;
+package com.company.util;
 
+import com.company.domain.Item;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;
@@ -13,11 +14,10 @@ import java.util.List;
 
 public class ItemReader {
     public static List<Item> itemConverter() throws FileNotFoundException {
-        String filePath = "/home/dylanc/IdeaProjects/library_System/src/main/java/ITEMS.csv";
+        String filePath = "src/main/resources/ITEMS.csv";
 
-        List<Item> items = new CsvToBeanBuilder<Item>(new FileReader(filePath))
+        return new CsvToBeanBuilder<Item>(new FileReader(filePath))
                 .withType(Item.class).build().parse();
 
-        return items;
     }
 }

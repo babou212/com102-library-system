@@ -1,4 +1,4 @@
-package com.company;
+package com.company.domain;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvDate;

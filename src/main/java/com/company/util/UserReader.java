@@ -1,5 +1,6 @@
-package com.company;
+package com.company.util;
 
+import com.company.domain.User;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;
@@ -14,11 +15,10 @@ import java.util.List;
 public class UserReader {
 
     public static List<User> userConverter() throws FileNotFoundException {
-        String filePath = "/home/dylanc/IdeaProjects/library_System/src/main/java/USERS.csv";
+        String filePath = "src/main/resources/USERS.csv";
 
-        List<User> users = new CsvToBeanBuilder<User>(new FileReader(filePath))
+        return new CsvToBeanBuilder<User>(new FileReader(filePath))
                 .withType(User.class).build().parse();
 
-        return users;
     }
 }

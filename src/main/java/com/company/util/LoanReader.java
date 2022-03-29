@@ -1,5 +1,6 @@
-package com.company;
+package com.company.util;
 
+import com.company.domain.Loan;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;
@@ -11,16 +12,13 @@ import java.util.List;
 // * Author Dylan Cree
  */
 
-    public class LoanReader {
+public class LoanReader {
     public static List<Loan> loanConverter() throws FileNotFoundException {
-        String filePath = "/home/dylanc/IdeaProjects/library_System/src/main/java/LOANS.csv";
+        String filePath = "src/main/resources/LOANS.csv";
 
-        List<Loan> loans = new CsvToBeanBuilder<Loan>(new FileReader(filePath))
+        return new CsvToBeanBuilder<Loan>(new FileReader(filePath))
                 .withType(Loan.class)
                 .build()
                 .parse();
-
-        //beans.forEach(System.out::println);  // debug statement to check output was correct
-        return loans;
     }
 }
