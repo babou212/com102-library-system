@@ -61,6 +61,7 @@ public class Main {
                     break;
                 case 5:
                     loanService.printLoans();
+                    System.out.print("\n");
                     loanService.printItems();
                     break;
                 case 6:
