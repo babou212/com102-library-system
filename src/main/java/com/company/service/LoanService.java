@@ -114,7 +114,7 @@ public class LoanService {
             List<Item> results = items.stream().filter(item -> item.getBarcode()
                     .equals(barcode)).collect(Collectors.toList());
 
-            final int[] quit = {0};
+            final int[] quitElseIf = {0};
             loans.forEach(loan -> {
                 if (results.get(0).getType().equals("Book") && loan.getBarcode().equals(barcode)
                         && loan.getNumRenews() < 3) {
@@ -127,9 +127,9 @@ public class LoanService {
                     LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                     loan.setDueDate(dueDate);
                     System.out.println("Multimedia loan renewed");
-                } else if (loan.getBarcode().equals(barcode)&& quit[0] == 0){
+                } else if (loan.getBarcode().equals(barcode)&& quitElseIf[0] == 0){
                     System.out.println("Loan cannot be renewed");
-                    quit[0]++;
+                    quitElseIf[0]++;
                 }
             });
         } else {
