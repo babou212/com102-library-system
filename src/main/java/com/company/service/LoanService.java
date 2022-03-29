@@ -92,7 +92,7 @@ public class LoanService {
             System.out.println("Loan has been removed from the list");
 
         } else {
-            System.out.println("Barcode " + barcode + " was invalid or unable to remove due to date");
+            System.out.println("Barcode " + barcode + " was invalid or date was outside of range for renewal");
         }
     }
 
@@ -114,6 +114,7 @@ public class LoanService {
             List<Item> results = items.stream().filter(item -> item.getBarcode()
                     .equals(barcode)).collect(Collectors.toList());
 
+            final int[] quit = {0};
             loans.forEach(loan -> {
                 if (results.get(0).getType().equals("Book") && loan.getBarcode().equals(barcode)
                         && loan.getNumRenews() < 3) {
@@ -126,8 +127,9 @@ public class LoanService {
                     LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                     loan.setDueDate(dueDate);
                     System.out.println("Multimedia loan renewed");
-                } else if (loan.getBarcode().equals(barcode)){
+                } else if (loan.getBarcode().equals(barcode)&& quit[0] == 0){
                     System.out.println("Loan cannot be renewed");
+                    quit[0]++;
                 }
             });
         } else {
