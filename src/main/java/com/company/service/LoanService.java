@@ -16,7 +16,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -76,24 +75,25 @@ public class LoanService {
     }
 
     public void returnItem() {
-        System.out.println("Please enter barcode for the loan you wish to remove");
+        System.out.println("Please enter barcode for the item you wish to remove");
         String barcode = scanner.nextLine();
 
-        System.out.println("Please enter date of return");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate currentDate = LocalDate.parse(scanner.nextLine(), formatter);
+        LocalDate currentDate = LocalDate.now();
 
-        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode)) &&
-                (loans.stream().anyMatch(loans -> loans.getDueDate().isBefore(currentDate))) ||
-                loans.stream().anyMatch(loans -> loans.getDueDate().isEqual(currentDate))) {
+        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))&&
+                (loans.stream().anyMatch(loans -> loans.getDueDate().isEqual(currentDate))||
+                        loans.stream().anyMatch(loans -> loans.getDueDate().isAfter(currentDate)))) {
 
             loans.removeIf(loans -> loans.getBarcode().equals(barcode));
             loans.forEach(System.out::println);
-            System.out.println("Loan has been removed from the list");
+            System.out.println("Item has been returned");
 
-        } else {
-            System.out.println("Barcode " + barcode + " was invalid or date was outside of range for renewal");
-        }
+            } else if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))
+            && loans.stream().anyMatch(loans -> loans.getDueDate().isBefore(currentDate))){
+                System.out.println("Date outside of return range");
+            }else {
+                System.out.println("Barcode " + barcode + "is invalid or the item is not on loan");
+            }
     }
 
     public void writeLoan() throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
@@ -122,13 +122,13 @@ public class LoanService {
                     loan.setDueDate(dueDate);
                     loan.setNumRenews(loan.getNumRenews() + 1);
                     System.out.println("Book loan renewed");
-                } else if (results.get(0).getType().equals("Multimedia") && loan.getBarcode().equals(barcode) &&
+                } else if (results.get(0).getType().equals("Multimedia") && loan.getBarcode().equals(barcode)&&
                         loan.getNumRenews() < 2) {
                     LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                     loan.setDueDate(dueDate);
                     System.out.println("Multimedia loan renewed");
                 } else if (loan.getBarcode().equals(barcode)&& quitElseIf[0] == 0){
-                    System.out.println("Loan cannot be renewed");
+                    System.out.println("Loan has reached max renews");
                     quitElseIf[0]++;
                 }
             });
