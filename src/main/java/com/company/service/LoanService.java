@@ -127,6 +127,7 @@ public class LoanService {
                         loan.getNumRenews() < 2) {
                     LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                     loan.setDueDate(dueDate);
+                    loan.setNumRenews(loan.getNumRenews() + 1);
                     System.out.println("Multimedia loan renewed");
                 } else if (loan.getBarcode().equals(barcode)&& quitElseIf[0] == 0){
                     System.out.println("Loan cannot be renewed");
