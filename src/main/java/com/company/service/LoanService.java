@@ -16,7 +16,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -59,7 +58,7 @@ public class LoanService {
             LocalDate currentDate = LocalDate.now();
             int numRenews = 0;
 
-            if (items.stream().anyMatch(item -> item.getType().equals("Book"))) {
+            if(items.stream().anyMatch(item -> item.getType().equals("Book"))) {
                 LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
                 Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
                 loans.add(loan);
@@ -85,11 +84,12 @@ public class LoanService {
             List<Loan> results = loans.stream().filter(item -> item.getBarcode()
                     .equals(barcode)).collect(Collectors.toList());
 
-            if(results.get(0).getDueDate().isAfter(currentDate)|| results.get(0).getDueDate().equals(currentDate)){
-            loans.removeIf(loans -> loans.getBarcode().equals(barcode));
-                    System.out.println("Item has been returned");
-                    loans.forEach(System.out::println);
-        }else if (loans.stream().anyMatch(loans -> loans.getDueDate().isBefore(currentDate))) {
+        if(results.get(0).getDueDate().isAfter(currentDate)|| results.get(0).getDueDate().equals(currentDate)){
+                loans.removeIf(loans -> loans.getBarcode().equals(barcode));
+                System.out.println("Item has been returned");
+                loans.forEach(System.out::println);
+
+        }else if (results.get(0).getDueDate().isBefore(currentDate)) {
             System.out.println("Date outside of return range");
         }
         }else {
