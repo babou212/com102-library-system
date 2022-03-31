@@ -80,21 +80,23 @@ public class LoanService {
 
         LocalDate currentDate = LocalDate.now();
 
-        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))&&
-                (loans.stream().anyMatch(loans -> loans.getDueDate().isEqual(currentDate))||
-                        loans.stream().anyMatch(loans -> loans.getDueDate().isAfter(currentDate)))) {
+        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
+            List<Loan> results = loans.stream().filter(item -> item.getBarcode()
+                    .equals(barcode)).collect(Collectors.toList());
 
-            loans.removeIf(loans -> loans.getBarcode().equals(barcode));
-            loans.forEach(System.out::println);
-            System.out.println("Item has been returned");
-
-            } else if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))
-            && loans.stream().anyMatch(loans -> loans.getDueDate().isBefore(currentDate))){
-                System.out.println("Date outside of return range");
-            }else {
-                System.out.println("Barcode " + barcode + "is invalid or the item is not on loan");
+            loans.forEach(loan -> {
+                if (results.get(0).getDueDate().isAfter(currentDate)|| results.get(0).getDueDate().equals(currentDate)){
+                    loans.removeIf(loans -> loans.getBarcode().equals(barcode));
+                    System.out.println("Item has been returned");
+                    loans.forEach(System.out::println);
+                 } else if (loans.stream().anyMatch(loans -> loans.getDueDate().isBefore(currentDate))){
+                    System.out.println("Date outside of return range");
             }
+        });
+    }else {
+            System.out.println("Barcode " + barcode + " was invalid or not currently on loan");
     }
+}
 
     public void writeLoan() throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
         String filePath = "src/main/resources/LOANS.csv";
@@ -103,6 +105,7 @@ public class LoanService {
         StatefulBeanToCsv<Loan> beanToCsv = new StatefulBeanToCsvBuilder<Loan>(writer).build();
         beanToCsv.write(loans);
         writer.close();
+        scanner.close();
     }
 
     public void renewLoan() {
