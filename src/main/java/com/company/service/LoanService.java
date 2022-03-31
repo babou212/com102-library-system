@@ -76,23 +76,24 @@ public class LoanService {
     }
 
     public void returnItem() {
-        System.out.println("Please enter barcode for the loan you wish to remove");
+        System.out.println("Please enter barcode for the item you wish to remove");
         String barcode = scanner.nextLine();
 
-        System.out.println("Please enter date of return");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate currentDate = LocalDate.parse(scanner.nextLine(), formatter);
+        LocalDate currentDate = LocalDate.now();
 
-        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode)) &&
-                (loans.stream().anyMatch(loans -> loans.getDueDate().isBefore(currentDate))) ||
-                loans.stream().anyMatch(loans -> loans.getDueDate().isEqual(currentDate))) {
+        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
+            List<Loan> results = loans.stream().filter(item -> item.getBarcode()
+                    .equals(barcode)).collect(Collectors.toList());
 
+            if(results.get(0).getDueDate().isAfter(currentDate)|| results.get(0).getDueDate().equals(currentDate)){
             loans.removeIf(loans -> loans.getBarcode().equals(barcode));
-            loans.forEach(System.out::println);
-            System.out.println("Loan has been removed from the list");
-
-        } else {
-            System.out.println("Barcode " + barcode + " was invalid or date was outside of range for renewal");
+                    System.out.println("Item has been returned");
+                    loans.forEach(System.out::println);
+        }else if (loans.stream().anyMatch(loans -> loans.getDueDate().isBefore(currentDate))) {
+            System.out.println("Date outside of return range");
+        }
+        }else {
+            System.out.println("Barcode " + barcode + " was invalid or not currently on loan");
         }
     }
 
