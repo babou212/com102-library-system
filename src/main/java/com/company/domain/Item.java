@@ -48,14 +48,6 @@ public class Item implements Serializable { // Serializable interface for java b
         return barcode;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public String getType() {
         return type;
     }

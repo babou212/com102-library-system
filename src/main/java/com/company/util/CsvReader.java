@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CsvReader {
 
-    public static <T> List<T> csvConverter(String filePath, Class<T> clazz) throws FileNotFoundException {
+    protected static <T> List<T> csvConverter(String filePath, Class<T> clazz) throws FileNotFoundException {
 
         return new CsvToBeanBuilder<T>(new FileReader(filePath))
                 .withType(clazz)

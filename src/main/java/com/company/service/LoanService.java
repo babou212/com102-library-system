@@ -19,11 +19,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- // * Java service class to provide the logic for manipulating program data
+ // * Java service class
  // * Author Dylan Cree
  */
 
-public class LoanService {
+public class LoanService extends CsvReader {
     private final Scanner scanner = new Scanner(System.in);
     private final List<Item> items = CsvReader.csvConverter("src/main/resources/ITEMS.csv", Item.class);
     private final List<Loan> loans = CsvReader.csvConverter("src/main/resources/LOANS.csv", Loan.class);
