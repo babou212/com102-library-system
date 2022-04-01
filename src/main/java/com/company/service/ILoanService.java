@@ -1,5 +1,10 @@
 package com.company.service;
 
+/**
+ // * Java interface for Loans service class
+ // * Author Dylan Cree
+ */
+
 public interface ILoanService {
 
     void printLoans();
