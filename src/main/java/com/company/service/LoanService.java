@@ -102,11 +102,11 @@ public class LoanService implements ILoanService {
             beanToCsv.write(loans);
             writer.close();
         }catch (IOException e){
-            System.out.println("IOException");
+            System.out.println("IOException" + e);
         }catch (CsvRequiredFieldEmptyException e ){
-            System.out.println("Empty CSV fields");
+            System.out.println("Empty CSV fields" + e);
         }catch (CsvDataTypeMismatchException e){
-            System.out.println("Mismatch data type in CSV");
+            System.out.println("Mismatch data type in CSV" + e);
         }
     }
 
