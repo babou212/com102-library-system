@@ -12,6 +12,8 @@ public interface ICsvReader {
         String filePath = "";
 
         return new CsvToBeanBuilder<ICsvReader>(new FileReader(filePath))
-                .withType(ICsvReader.class).build().parse();
+                .withType(ICsvReader.class)
+                .build()
+                .parse();
     }
 }

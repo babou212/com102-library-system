@@ -12,13 +12,14 @@ import java.util.List;
  * Author Dylan Cree
  */
 
-public class ItemReader implements ICsvReader{
+public class ItemReader implements ICsvReader {
 
     public static List<Item> csvConverter() throws FileNotFoundException {
         String filePath = "src/main/resources/ITEMS.csv";
 
         return new CsvToBeanBuilder<Item>(new FileReader(filePath))
-                .withType(Item.class).build().parse();
-
+                .withType(Item.class)
+                .build()
+                .parse();
     }
 }

@@ -18,7 +18,9 @@ public class UserReader implements ICsvReader {
         String filePath = "src/main/resources/USERS.csv";
 
         return new CsvToBeanBuilder<User>(new FileReader(filePath))
-                .withType(User.class).build().parse();
+                .withType(User.class)
+                .build()
+                .parse();
 
     }
 }

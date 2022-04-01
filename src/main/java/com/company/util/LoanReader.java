@@ -12,7 +12,7 @@ import java.util.List;
 // * Author Dylan Cree
  */
 
-public class LoanReader implements ICsvReader{
+public class LoanReader implements ICsvReader {
 
     public static List<Loan> csvConverter() throws FileNotFoundException {
         String filePath = "src/main/resources/LOANS.csv";

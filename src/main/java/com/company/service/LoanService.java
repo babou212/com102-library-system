@@ -93,7 +93,7 @@ public class LoanService implements ILoanService {
         }
     }
 
-    public void writeLoan()  {
+    public void writeLoan() {
         String filePath = "src/main/resources/LOANS.csv";
 
         try {
@@ -103,7 +103,7 @@ public class LoanService implements ILoanService {
             writer.close();
         }catch (IOException e){
             System.out.println("IOException" + e);
-        }catch (CsvRequiredFieldEmptyException e ){
+        }catch (CsvRequiredFieldEmptyException e){
             System.out.println("Empty CSV fields" + e);
         }catch (CsvDataTypeMismatchException e){
             System.out.println("Mismatch data type in CSV" + e);
