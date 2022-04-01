@@ -21,7 +21,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- // * Java class to provide the logic for manipulating program data
+ // * Java service class to provide the logic for manipulating program data
  // * Author Dylan Cree
  */
 
@@ -42,10 +42,6 @@ public class LoanService {
         items.forEach(System.out::println);
     }
 
-    public void printUsers() {
-        users.forEach(System.out::println);
-    }
-
     public void issueLoan() {
         System.out.println("Please enter userId");
         String userId = scanner.nextLine();
@@ -59,7 +55,7 @@ public class LoanService {
             int numRenews = 0;
 
             if(items.stream().anyMatch(item -> item.getType().equals("Book"))) {
-                LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
+                LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
                 Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
                 loans.add(loan);
                 loans.forEach(System.out::println);

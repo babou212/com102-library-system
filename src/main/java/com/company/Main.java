@@ -39,7 +39,7 @@ public class Main {
                 if(scanner.hasNextInt()) {
                     menu = scanner.nextInt();
                 }else {
-                    System.out.println("Please enter a valid option");
+                    System.out.println("\nPlease enter a valid option");
                     scanner.next(); // Scanner next call to clear input buffer
                 }
 
@@ -48,26 +48,23 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    loanService.printUsers();
-                    break;
-                case 2:
                     loanService.issueLoan();
                     break;
-                case 3:
+                case 2:
                     loanService.renewLoan();
                     break;
-                case 4:
+                case 3:
                     loanService.returnItem();
                     break;
-                case 5:
+                case 4:
                     loanService.printLoans();
                     System.out.print("\n");
                     loanService.printItems();
                     break;
-                case 6:
+                case 5:
                     loanService.writeLoan();
                     quit = true;
-                    System.out.println("Program has terminated");
+                    System.out.println("User has terminated the program");
                     scanner.close(); // CLose scanner once program has terminated
                     break;
             }
@@ -77,11 +74,10 @@ public class Main {
     private void printInstructions() {  // Method to print menu options to the user
         System.out.println("\nPress ");
         System.out.println("\t 0 - To print menu options");
-        System.out.println("\t 1 - To print the list of Users");
-        System.out.println("\t 2 - To Issue new loan");
-        System.out.println("\t 3 - To renew loan");
-        System.out.println("\t 4 - To return item");
-        System.out.println("\t 5 - To view all items on loan and all items held");
-        System.out.println("\t 6 - TO quit the application");
+        System.out.println("\t 1 - To Issue new loan");
+        System.out.println("\t 2 - To renew loan");
+        System.out.println("\t 3 - To return item");
+        System.out.println("\t 4 - To view all items on loan and all items held by library");
+        System.out.println("\t 5 - TO quit the application");
     }
 }
