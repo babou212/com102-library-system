@@ -58,11 +58,13 @@ public class LoanService implements ILoanService {
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
                 Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
                 loans.add(loan);
+                System.out.println("New book loan created");
                 loans.forEach(System.out::println);
             } else {
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                 Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
                 loans.add(loan);
+                System.out.println("New multimedia loan created");
                 loans.forEach(System.out::println);
             }
         } else {
