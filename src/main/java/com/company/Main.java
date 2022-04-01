@@ -1,8 +1,6 @@
 package com.company;
 
 import com.company.service.LoanService;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,14 +18,12 @@ public class Main {
     public Main() throws FileNotFoundException {
     }
 
-    public static void main(String[] args) throws IOException, CsvRequiredFieldEmptyException,
-            CsvDataTypeMismatchException {
+    public static void main(String[] args) throws IOException {
         Main main = new Main();
         main.start();
     }
 
-    private void start() throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException,
-            IOException { // Method to control the operation of the program
+    private void start() { // Method to control the operation of the program
         boolean quit = false;
         int menu = 0;
 

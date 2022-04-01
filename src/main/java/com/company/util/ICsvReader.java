@@ -1,6 +1,5 @@
 package com.company.util;
 
-import com.company.domain.Item;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;

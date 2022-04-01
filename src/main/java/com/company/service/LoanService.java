@@ -108,7 +108,6 @@ public class LoanService implements ILoanService {
         }catch (CsvDataTypeMismatchException e){
             System.out.println("Mismatch data type in CSV");
         }
-
     }
 
     public void renewLoan() {
