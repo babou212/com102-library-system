@@ -25,11 +25,11 @@ import java.util.stream.Collectors;
  // * Author Dylan Cree
  */
 
-public class LoanService {
+public class LoanService implements ILoanService {
     private final Scanner scanner = new Scanner(System.in);
-    private final List<Item> items = ItemReader.itemConverter();
-    private final List<Loan> loans = LoanReader.loanConverter();
-    private final List<User> users = UserReader.userConverter();
+    private final List<Item> items = ItemReader.csvConverter();
+    private final List<Loan> loans = LoanReader.csvConverter();
+    private final List<User> users = UserReader.csvConverter();
 
     public LoanService() throws FileNotFoundException {
     }
@@ -93,13 +93,22 @@ public class LoanService {
         }
     }
 
-    public void writeLoan() throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
+    public void writeLoan()  {
         String filePath = "src/main/resources/LOANS.csv";
 
-        Writer writer = new FileWriter(filePath);
-        StatefulBeanToCsv<Loan> beanToCsv = new StatefulBeanToCsvBuilder<Loan>(writer).build();
-        beanToCsv.write(loans);
-        writer.close();
+        try {
+            Writer writer = new FileWriter(filePath);
+            StatefulBeanToCsv<Loan> beanToCsv = new StatefulBeanToCsvBuilder<Loan>(writer).build();
+            beanToCsv.write(loans);
+            writer.close();
+        }catch (IOException e){
+            System.out.println("IOException");
+        }catch (CsvRequiredFieldEmptyException e ){
+            System.out.println("Empty CSV fields");
+        }catch (CsvDataTypeMismatchException e){
+            System.out.println("Mismatch data type in CSV");
+        }
+
     }
 
     public void renewLoan() {

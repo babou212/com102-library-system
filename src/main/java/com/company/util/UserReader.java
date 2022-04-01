@@ -12,9 +12,9 @@ import java.util.List;
  * Author Dylan Cree
  */
 
-public class UserReader {
+public class UserReader implements ICsvReader {
 
-    public static List<User> userConverter() throws FileNotFoundException {
+    public static List<User> csvConverter() throws FileNotFoundException {
         String filePath = "src/main/resources/USERS.csv";
 
         return new CsvToBeanBuilder<User>(new FileReader(filePath))
