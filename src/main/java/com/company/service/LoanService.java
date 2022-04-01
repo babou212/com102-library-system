@@ -1,8 +1,6 @@
 package com.company.service;
 
-import com.company.util.ItemReader;
-import com.company.util.LoanReader;
-import com.company.util.UserReader;
+import com.company.util.CsvReader;
 import com.company.domain.Item;
 import com.company.domain.Loan;
 import com.company.domain.User;
@@ -25,11 +23,11 @@ import java.util.stream.Collectors;
  // * Author Dylan Cree
  */
 
-public class LoanService implements ILoanService {
+public class LoanService {
     private final Scanner scanner = new Scanner(System.in);
-    private final List<Item> items = ItemReader.csvConverter();
-    private final List<Loan> loans = LoanReader.csvConverter();
-    private final List<User> users = UserReader.csvConverter();
+    private final List<Item> items = CsvReader.csvConverter("src/main/resources/ITEMS.csv", Item.class);
+    private final List<Loan> loans = CsvReader.csvConverter("src/main/resources/LOANS.csv", Loan.class);
+    private final List<User> users = CsvReader.csvConverter("src/main/resources/USERS.csv", User.class);
 
     public LoanService() throws FileNotFoundException {
     }
