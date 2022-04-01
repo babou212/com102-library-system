@@ -13,5 +13,4 @@ public interface ILoanService {
     void writeLoan();
 
     void renewLoan();
-
 }
