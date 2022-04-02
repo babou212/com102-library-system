@@ -80,13 +80,13 @@ class LoanServiceTest {
         // Given
         String barcode = "340096334";
 
-        //When
+        // When
         loanService.renewLoan(barcode);
         List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode))
                 .collect(Collectors.toList());
         Loan resultObj = result.get(0);
 
-        //Then
+        // Then
         assertEquals(1, resultObj.getNumRenews());
         assert(resultObj.getDueDate().isAfter(LocalDate.now().plus(13, ChronoUnit.DAYS)));
     }
@@ -102,5 +102,16 @@ class LoanServiceTest {
 
         assertEquals(1, resultObj.getNumRenews());
         assert(resultObj.getDueDate().isAfter(LocalDate.now().plus(6, ChronoUnit.DAYS)));
+    }
+
+    @Test
+    void renewLoanShouldNotRenewLoanIfNumRenewsGreaterThan3Or4() {
+        String barcode = "240453126";
+
+        loanService.renewLoan(barcode);
+        List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode))
+                .collect(Collectors.toList());
+
+        assertEquals(1, result.size());
     }
 }
