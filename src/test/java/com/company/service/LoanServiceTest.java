@@ -105,7 +105,7 @@ class LoanServiceTest {
     }
 
     @Test
-    void renewLoanShouldNotRenewLoanIfNumRenewsGreaterThan3Or4() {
+    void renewLoanShouldNotRenewLoanIfNumRenewsGreaterThan3Or2() {
         String barcode = "240453126";
 
         loanService.renewLoan(barcode);
