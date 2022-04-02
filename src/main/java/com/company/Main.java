@@ -54,7 +54,7 @@ public class Main {
                     break;
                 case 4:
                     loanService.printLoans();
-                    System.out.print("\n");
+                    System.out.println();
                     loanService.printItems();
                     break;
                 case 5:

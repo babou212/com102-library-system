@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.util.List;
 
 /**
- * Java class to read CSV's using generics using openCSV library
+ * Java class to read CSV's using java generics/ openCSV library
  * Author Dylan Cree
  */
 

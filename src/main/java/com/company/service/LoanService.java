@@ -86,7 +86,7 @@ public class LoanService extends CsvReader {
                 loans.forEach(System.out::println);
 
         }else if (results.get(0).getDueDate().isBefore(currentDate)) {
-            System.out.println("Date outside of return range");
+            System.out.println("Date outside of return window");
         }
         }else {
             System.out.println("Barcode " + barcode + " was invalid or not currently on loan");
