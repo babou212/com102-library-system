@@ -53,7 +53,7 @@ class LoanServiceTest {
 
 
     @Test
-    void returnItemShouldRemoveLoanIfDueIsAfterOrEqualCurrentDate() {
+    void returnItemShouldRemoveLoanIfDueDateIsAfterOrEqualCurrentDate() {
         String barcode = "169865085";
         String userId = "B00359213";
         loanService.issueLoan(userId, barcode);
@@ -65,7 +65,7 @@ class LoanServiceTest {
     }
 
     @Test
-    void returnItemShouldNotRemoveLoanIfDueIsBeforeCurrentDate() {
+    void returnItemShouldNotRemoveLoanIfDueDateIsBeforeCurrentDate() {
         String barcode = "340096334";
 
         loanService.returnItem(barcode);

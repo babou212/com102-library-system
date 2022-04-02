@@ -30,8 +30,6 @@ public class LoanService extends CsvReader{
         return loans;
     }
 
-
-
     public void printLoans() {
         loans.forEach(System.out::println); // Printing stream to print all list objects on new line
     }
@@ -103,7 +101,6 @@ public class LoanService extends CsvReader{
     }
 
     public void renewLoan(String barcode) {
-
         if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
             LocalDate currentDate = LocalDate.now();
             List<Item> results = items.stream().filter(item -> item.getBarcode()
