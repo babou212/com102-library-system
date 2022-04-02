@@ -1,9 +1,9 @@
 package com.company.service;
 
-import com.company.util.CsvReader;
 import com.company.domain.Item;
 import com.company.domain.Loan;
 import com.company.domain.User;
+import com.company.util.CsvReader;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
@@ -15,22 +15,22 @@ import java.io.IOException;
 import java.io.Writer;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- // * Java service class
- // * Author Dylan Cree
- */
-
-public class LoanService extends CsvReader {
-    private final Scanner scanner = new Scanner(System.in);
+public class LoanService extends CsvReader{
     private final List<Item> items = CsvReader.csvConverter("src/main/resources/ITEMS.csv", Item.class);
     private final List<Loan> loans = CsvReader.csvConverter("src/main/resources/LOANS.csv", Loan.class);
     private final List<User> users = CsvReader.csvConverter("src/main/resources/USERS.csv", User.class);
 
     public LoanService() throws FileNotFoundException {
     }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+
 
     public void printLoans() {
         loans.forEach(System.out::println); // Printing stream to print all list objects on new line
@@ -40,12 +40,7 @@ public class LoanService extends CsvReader {
         items.forEach(System.out::println);
     }
 
-    public void issueLoan() {
-        System.out.println("Please enter userId");
-        String userId = scanner.nextLine();
-        System.out.println("Please enter item barcode");
-        String barcode = scanner.nextLine();
-
+    public void issueLoan(String userId, String barcode){
         if (users.stream().anyMatch(user -> user.getUserId().equals(userId))
                 && items.stream().anyMatch(item -> item.getBarcode().equals(barcode))) {
             LocalDate issueDate = LocalDate.now();
@@ -70,25 +65,22 @@ public class LoanService extends CsvReader {
         }
     }
 
-    public void returnItem() {
-        System.out.println("Please enter barcode for the item you wish to remove");
-        String barcode = scanner.nextLine();
-
+    public void returnItem(String barcode) {
         LocalDate currentDate = LocalDate.now();
 
         if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
             List<Loan> results = loans.stream().filter(item -> item.getBarcode()
                     .equals(barcode)).collect(Collectors.toList());
 
-        if(results.get(0).getDueDate().isAfter(currentDate)|| results.get(0).getDueDate().equals(currentDate)){
+            if (results.get(0).getDueDate().isAfter(currentDate) || results.get(0).getDueDate().equals(currentDate)) {
                 loans.removeIf(loans -> loans.getBarcode().equals(barcode));
                 System.out.println("Item has been returned");
                 loans.forEach(System.out::println);
 
-        }else if (results.get(0).getDueDate().isBefore(currentDate)) {
-            System.out.println("Date outside of return window");
-        }
-        }else {
+            } else if (results.get(0).getDueDate().isBefore(currentDate)) {
+                System.out.println("Date outside of return window");
+            }
+        } else {
             System.out.println("Barcode " + barcode + " was invalid or not currently on loan");
         }
     }
@@ -110,9 +102,7 @@ public class LoanService extends CsvReader {
         }
     }
 
-    public void renewLoan() {
-        System.out.println("Please enter barcode for loan renewal");
-        String barcode = scanner.nextLine();
+    public void renewLoan(String barcode) {
 
         if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
             LocalDate currentDate = LocalDate.now();

@@ -41,6 +41,9 @@ public class Loan implements Serializable { // Serializable marker interface for
         this.numRenews = numRenews;
     }
 
+    public Loan(String s, String b00359213, LocalDate currentDate, LocalDate dueDate) {
+    }
+
     @Override
     public String toString() {
         return "Loan{" +
@@ -72,5 +75,9 @@ public class Loan implements Serializable { // Serializable marker interface for
 
     public void setNumRenews(int numRenews) {
         this.numRenews = numRenews;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }

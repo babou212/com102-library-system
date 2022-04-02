@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.service.LoanService;
+import com.company.service.SystemService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
-    private final LoanService loanService = new LoanService();
+    private final SystemService systemService = new SystemService();
 
     public Main() throws FileNotFoundException {
     }
@@ -44,21 +44,21 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    loanService.issueLoan();
+                    systemService.issueLoan();
                     break;
                 case 2:
-                    loanService.renewLoan();
+                    systemService.renewLoan();
                     break;
                 case 3:
-                    loanService.returnItem();
+                    systemService.returnItem();
                     break;
                 case 4:
-                    loanService.printLoans();
+                    systemService.printLoans();
                     System.out.println();
-                    loanService.printItems();
+                    systemService.printItems();
                     break;
                 case 5:
-                    loanService.writeLoan();
+                    systemService.writeLoan();
                     quit = true;
                     System.out.println("User has terminated the program");
                     scanner.close(); // CLose scanner once program has terminated

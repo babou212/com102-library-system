@@ -64,4 +64,5 @@ public class Item implements Serializable { // Serializable interface for java b
     public String getType() {
         return type;
     }
+
 }
