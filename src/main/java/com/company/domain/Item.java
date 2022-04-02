@@ -32,6 +32,19 @@ public class Item implements Serializable { // Serializable interface for java b
     public Item() {   // No args constructor for java beans class
     }
 
+    public Item(String barcode, String author, String title, String year, String type, String ISBN) {
+        this.barcode = barcode;
+        this.author = author;
+        this.title = title;
+        this.year = year;
+        this.type = type;
+        this.ISBN = ISBN;
+    }
+
+    public Item(String s, String s1, String s2, String book, String s3) {
+
+    }
+
     @Override
     public String toString() {
         return "Item{" +
