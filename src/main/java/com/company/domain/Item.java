@@ -41,10 +41,6 @@ public class Item implements Serializable { // Serializable interface for java b
         this.ISBN = ISBN;
     }
 
-    public Item(String s, String s1, String s2, String book, String s3) {
-
-    }
-
     @Override
     public String toString() {
         return "Item{" +
@@ -64,5 +60,4 @@ public class Item implements Serializable { // Serializable interface for java b
     public String getType() {
         return type;
     }
-
 }

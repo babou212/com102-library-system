@@ -1,7 +1,5 @@
 package com.company.service;
 
-import com.company.domain.Item;
-
 import com.company.domain.Loan;
 import org.junit.jupiter.api.Test;
 
@@ -53,32 +51,56 @@ class LoanServiceTest {
         assertEquals(1, result.size());
     }
 
+
     @Test
-    void returnItem_TypeBook() {
+    void returnItemShouldRemoveLoanIfDueIsAfterOrEqualCurrentDate() {
         String barcode = "169865085";
-        LocalDate currentDate = LocalDate.now();
+        String userId = "B00359213";
+        loanService.issueLoan(userId, barcode);
+        loanService.returnItem(barcode);
+        List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode)&&
+                loan.getUserId().equals(userId)).collect(Collectors.toList());
 
+        assertEquals(0, result.size());
     }
 
     @Test
-    void returnItem_TypeMultimedia() {
-        String barcode = "169865085";
-        LocalDate currentDate = LocalDate.now();
+    void returnItemShouldNotRemoveLoanIfDueIsBeforeCurrentDate() {
+        String barcode = "340096334";
 
+        loanService.returnItem(barcode);
+        List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode))
+                .collect(Collectors.toList());
+
+        assertEquals(1, result.size());
     }
 
     @Test
-    void writeLoan() {
+    void renewLoanShouldRenewTypeBookBy2Weeks() {
+        // Given
+        String barcode = "340096334";
 
+        //When
+        loanService.renewLoan(barcode);
+        List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode))
+                .collect(Collectors.toList());
+        Loan resultObj = result.get(0);
+
+        //Then
+        assertEquals(1, resultObj.getNumRenews());
+        assert(resultObj.getDueDate().isAfter(LocalDate.now().plus(13, ChronoUnit.DAYS)));
     }
 
     @Test
-    void renewLoan_TypeBook() {
+    void renewLoanShouldRenewTypeMultimediaBy1Week() {
+        String barcode = "433849131";
 
-    }
+        loanService.renewLoan(barcode);
+        List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode))
+                .collect(Collectors.toList());
+        Loan resultObj = result.get(0);
 
-    @Test
-    void renewLoan_TypeMultimedia() {
-
+        assertEquals(1, resultObj.getNumRenews());
+        assert(resultObj.getDueDate().isAfter(LocalDate.now().plus(6, ChronoUnit.DAYS)));
     }
 }
