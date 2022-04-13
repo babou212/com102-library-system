@@ -2,6 +2,8 @@ package com.company.service;
 
 import com.company.domain.Loan;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.TestInstance;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -11,20 +13,39 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Java test class using Junit 5.8.2
+ * Author Dylan Cree B00826872
+ * Please note that Junit 5 uses different annotations than JUnit 4
+ */
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // Annotation used so @BeforeAll issueNewLoanForTestingPurposes method can remain non static 
 class LoanServiceTest {
     private final LoanService loanService = new LoanService();
 
     LoanServiceTest() throws FileNotFoundException {
     }
 
+    @BeforeAll
+    void issueNewLoanForTestingPurposes() {
+        String barcode = "433849131";
+        String userId = "B00791278";
+        
+        loanService.issueLoan(userId, barcode);
+    }
+    
     @Test
-    void issueLoanShouldProperlyMapNewLoanIfCorrectBookDataIsPassed() {
+    void issueLoanShouldProperlyMapNewLoanIfCorrectBookDataIsPassed() { //Given when then, used instead of AAA because of familrity 
+       // Given
        String barcode = "169865085";
        String userId = "B00359213";
+       
+       // When
        loanService.issueLoan(userId, barcode);
        List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode)&&
                loan.getUserId().equals(userId)).collect(Collectors.toList());
-
+       
+       // Then
        assertEquals(1, result.size());
     }
 
@@ -44,6 +65,7 @@ class LoanServiceTest {
     void issueLoanShouldProperlyMapNewLoanIfCorrectMultimediaDataIsPassed(){
         String barcode = "798764462";
         String userId = "B00359213";
+
         loanService.issueLoan(userId, barcode);
         List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode)&&
                 loan.getUserId().equals(userId)).collect(Collectors.toList());
@@ -56,6 +78,7 @@ class LoanServiceTest {
     void returnItemShouldRemoveLoanIfDueDateIsAfterOrEqualCurrentDate() {
         String barcode = "169865085";
         String userId = "B00359213";
+
         loanService.issueLoan(userId, barcode);
         loanService.returnItem(barcode);
         List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode)&&
@@ -72,21 +95,18 @@ class LoanServiceTest {
         List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode))
                 .collect(Collectors.toList());
 
-        assertEquals(1, result.size());
+        assertEquals(0, result.size());
     }
 
     @Test
-    void renewLoanShouldRenewTypeBookBy2Weeks() {
-        // Given
-        String barcode = "340096334";
+    void renewLoanShouldRenewTypeBookBy2Weeks() {  
+        String barcode = "25832497";
 
-        // When
         loanService.renewLoan(barcode);
         List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode))
                 .collect(Collectors.toList());
         Loan resultObj = result.get(0);
 
-        // Then
         assertEquals(1, resultObj.getNumRenews());
         assert(resultObj.getDueDate().isAfter(LocalDate.now().plus(13, ChronoUnit.DAYS)));
     }

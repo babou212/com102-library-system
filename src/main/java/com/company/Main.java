@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.service.SystemService;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,7 +10,7 @@ import java.util.Scanner;
 
 /**
  // * Main Java class for controlling the program
- // * Author Dylan Cree
+ // * Author Dylan Cree B00826872
  */
 
 public class Main {
@@ -18,12 +20,14 @@ public class Main {
     public Main() throws FileNotFoundException {
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, CsvRequiredFieldEmptyException,
+            CsvDataTypeMismatchException {
         Main main = new Main();
         main.start();
     }
-
-    private void start() { // Method to control the operation of the program
+                                                                                          
+    private void start() throws IOException, CsvRequiredFieldEmptyException,  // Method to control the operation of the program
+            CsvDataTypeMismatchException{ 
         boolean quit = false;
         int menu = 0;
 
@@ -32,14 +36,14 @@ public class Main {
         while (!quit) {
                 System.out.println("Enter your choice: ");
 
-                if(scanner.hasNextInt()) {
+                if(scanner.hasNextInt()) {   // Validation to ensure user cannot crash the program by passing incorrect data type
                     menu = scanner.nextInt();
                 }else {
                     System.out.println("\nPlease enter a valid option");
                     scanner.next(); // Scanner next call to clear input buffer
                 }
 
-            switch (menu) {
+            switch (menu) {  // Switch statement to control program 
                 case 0:
                     printInstructions();
                     break;
@@ -54,10 +58,11 @@ public class Main {
                     break;
                 case 4:
                     systemService.printLoans();
-                    System.out.println();
-                    systemService.printItems();
                     break;
                 case 5:
+                    systemService.printItems();
+                    break;
+                case 6:
                     systemService.writeLoan();
                     quit = true;
                     System.out.println("User has terminated the program");
@@ -73,7 +78,8 @@ public class Main {
         System.out.println("\t 1 - To Issue new loan");
         System.out.println("\t 2 - To renew loan");
         System.out.println("\t 3 - To return item");
-        System.out.println("\t 4 - To view all items on loan and all items held by library");
-        System.out.println("\t 5 - TO quit the application");
+        System.out.println("\t 4 - To view all items on loan");
+        System.out.println("\t 5 - TO view all items held by library");
+        System.out.println("\t 6 - TO quit the application");
     }
 }

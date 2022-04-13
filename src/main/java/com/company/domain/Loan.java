@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 /**
  // * Java beans data class for serialization and deserialization
- // * Author Dylan Cree
+ // * Author Dylan Cree B00826872
  */
 
 public class Loan implements Serializable { // Serializable marker interface for java beans class
@@ -41,7 +41,7 @@ public class Loan implements Serializable { // Serializable marker interface for
         this.numRenews = numRenews;
     }
 
-    @Override
+    @Override  
     public String toString() {
         return "Loan{" +
                 "barcode='" + barcode + '\'' +

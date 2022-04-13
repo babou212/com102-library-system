@@ -18,7 +18,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LoanService extends CsvReader{
+/**
+ // * Java Loan service class
+ // * Author Dylan Cree B00826872
+ */
+
+public class LoanService extends CsvReader{                 // Passing file paths and class due to using java generics
     private final List<Item> items = CsvReader.csvConverter("src/main/resources/ITEMS.csv", Item.class);
     private final List<Loan> loans = CsvReader.csvConverter("src/main/resources/LOANS.csv", Loan.class);
     private final List<User> users = CsvReader.csvConverter("src/main/resources/USERS.csv", User.class);
@@ -26,7 +31,7 @@ public class LoanService extends CsvReader{
     public LoanService() throws FileNotFoundException {
     }
 
-    public List<Loan> getLoans() {
+    public List<Loan> getLoans() {  // Getter used for testing purposes 
         return loans;
     }
 
@@ -44,14 +49,16 @@ public class LoanService extends CsvReader{
             LocalDate issueDate = LocalDate.now();
             LocalDate currentDate = LocalDate.now();
             int numRenews = 0;
+            List<Item> results = items.stream().filter(item -> item.getBarcode()
+                    .equals(barcode)).collect(Collectors.toList());
 
-            if(items.stream().anyMatch(item -> item.getType().equals("Book"))) {
+            if(results.get(0).getType().equals("Book")) {
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
                 Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
                 loans.add(loan);
                 System.out.println("New book loan created");
                 loans.forEach(System.out::println);
-            } else {
+            } else if (results.get(0).getType().equals("Multimedia")){
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                 Loan loan = new Loan(barcode, userId, issueDate, dueDate, numRenews);
                 loans.add(loan);
@@ -66,12 +73,12 @@ public class LoanService extends CsvReader{
     public void returnItem(String barcode) {
         LocalDate currentDate = LocalDate.now();
 
-        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
+        if (loans.stream().anyMatch(loansZ -> loansZ.getBarcode().equals(barcode))) {
             List<Loan> results = loans.stream().filter(item -> item.getBarcode()
                     .equals(barcode)).collect(Collectors.toList());
 
             if (results.get(0).getDueDate().isAfter(currentDate) || results.get(0).getDueDate().equals(currentDate)) {
-                loans.removeIf(loans -> loans.getBarcode().equals(barcode));
+                loans.removeIf(loansz -> loansz.getBarcode().equals(barcode));
                 System.out.println("Item has been returned");
                 loans.forEach(System.out::println);
 
@@ -83,25 +90,17 @@ public class LoanService extends CsvReader{
         }
     }
 
-    public void writeLoan() {
+    public void writeLoan() throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
         String filePath = "src/main/resources/LOANS.csv";
 
-        try {
             Writer writer = new FileWriter(filePath);
             StatefulBeanToCsv<Loan> beanToCsv = new StatefulBeanToCsvBuilder<Loan>(writer).build();
             beanToCsv.write(loans);
-            writer.close();
-        }catch (IOException e){
-            System.out.println("IOException" + e);
-        }catch (CsvRequiredFieldEmptyException e){
-            System.out.println("Empty CSV fields" + e);
-        }catch (CsvDataTypeMismatchException e){
-            System.out.println("Mismatch data type in CSV" + e);
-        }
-    }
+            writer.close();   
+    } 
 
     public void renewLoan(String barcode) {
-        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
+        if (loans.stream().anyMatch(loansS -> loansS.getBarcode().equals(barcode))) {
             LocalDate currentDate = LocalDate.now();
             List<Item> results = items.stream().filter(item -> item.getBarcode()
                     .equals(barcode)).collect(Collectors.toList());

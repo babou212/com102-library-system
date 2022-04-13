@@ -3,9 +3,14 @@ package com.company.service;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+import java.io.IOException;
+
 /**
- // * Java service class
- // * Author Dylan Cree
+ // * Java system service class
+ *    Class made to abstract the user input from the methods in LoanService class so that they can be tested
+ // * Author Dylan Cree B00826872
  */
 
 public class SystemService {
@@ -35,16 +40,18 @@ public class SystemService {
     public void returnItem() {
         System.out.println("Please enter barcode for the item you wish to remove");
         String barcode = scanner.nextLine();
+
         loanService.returnItem(barcode);
     }
 
-    public void writeLoan() {
+    public void writeLoan()throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
         loanService.writeLoan();
     }
 
     public void renewLoan() {
         System.out.println("Please enter barcode for loan renewal");
         String barcode = scanner.nextLine();
+
         loanService.renewLoan(barcode);
     }
 }

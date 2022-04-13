@@ -8,10 +8,10 @@ import java.util.List;
 
 /**
  * Java class to read CSV's using java generics/ openCSV library
- * Author Dylan Cree
+ * Author Dylan Cree B00826872
  */
 
-public class CsvReader {
+public class CsvReader {  // Generics used to reduce code reuse
 
     protected static <T> List<T> csvConverter(String filePath, Class<T> clazz) throws FileNotFoundException {
 
