@@ -29,6 +29,7 @@ public class LoanService extends CsvReader{                 // Passing file path
     private final List<User> users = CsvReader.csvConverter("src/main/resources/USERS.csv", User.class);
 
     public LoanService() throws FileNotFoundException {
+        // FileNotFoundException Exception for class
     }
 
     public List<Loan> getLoans() {  // Getter used for testing purposes 
@@ -43,7 +44,7 @@ public class LoanService extends CsvReader{                 // Passing file path
         items.forEach(System.out::println);
     }
 
-    public void issueLoan(String userId, String barcode){
+    public void issueLoan(String userId, String barcode) {
         if (users.stream().anyMatch(user -> user.getUserId().equals(userId))
                 && items.stream().anyMatch(item -> item.getBarcode().equals(barcode))) {
             LocalDate issueDate = LocalDate.now();
@@ -73,12 +74,12 @@ public class LoanService extends CsvReader{                 // Passing file path
     public void returnItem(String barcode) {
         LocalDate currentDate = LocalDate.now();
 
-        if (loans.stream().anyMatch(loansZ -> loansZ.getBarcode().equals(barcode))) {
+        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
             List<Loan> results = loans.stream().filter(item -> item.getBarcode()
                     .equals(barcode)).collect(Collectors.toList());
 
             if (results.get(0).getDueDate().isAfter(currentDate) || results.get(0).getDueDate().equals(currentDate)) {
-                loans.removeIf(loansz -> loansz.getBarcode().equals(barcode));
+                loans.removeIf(loans -> loans.getBarcode().equals(barcode));
                 System.out.println("Item has been returned");
                 loans.forEach(System.out::println);
 
@@ -100,7 +101,7 @@ public class LoanService extends CsvReader{                 // Passing file path
     } 
 
     public void renewLoan(String barcode) {
-        if (loans.stream().anyMatch(loansS -> loansS.getBarcode().equals(barcode))) {
+        if (loans.stream().anyMatch(loans -> loans.getBarcode().equals(barcode))) {
             LocalDate currentDate = LocalDate.now();
             List<Item> results = items.stream().filter(item -> item.getBarcode()
                     .equals(barcode)).collect(Collectors.toList());

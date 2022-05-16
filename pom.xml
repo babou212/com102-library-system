@@ -16,6 +16,7 @@
            <groupId>com.opencsv</groupId>
            <artifactId>opencsv</artifactId>
            <version>5.6</version>
+           <scope>import</scope>
        </dependency>
        <dependency>
            <groupId>org.junit.jupiter</groupId>

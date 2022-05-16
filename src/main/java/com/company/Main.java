@@ -18,22 +18,23 @@ public class Main {
     private final SystemService systemService = new SystemService();
 
     public Main() throws FileNotFoundException {
+        // FileNotFoundException Exception for class
     }
 
     public static void main(String[] args) throws IOException, CsvRequiredFieldEmptyException,
             CsvDataTypeMismatchException {
         Main main = new Main();
-        main.start();
+        main.programStart();
     }
                                                                                           
-    private void start() throws IOException, CsvRequiredFieldEmptyException,  // Method to control the operation of the program
+    private void programStart() throws IOException, CsvRequiredFieldEmptyException,  // Method to control the operation of the program
             CsvDataTypeMismatchException{ 
-        boolean quit = false;
+        boolean isQuit = false;
         int menu = 0;
 
         printInstructions(); // Method Call to print program instructions
 
-        while (!quit) {
+        while (!isQuit) {
                 System.out.println("Enter your choice: ");
 
                 if(scanner.hasNextInt()) {   // Validation to ensure user cannot crash the program by passing incorrect data type
@@ -64,10 +65,12 @@ public class Main {
                     break;
                 case 6:
                     systemService.writeLoan();
-                    quit = true;
+                    isQuit = true;
                     System.out.println("User has terminated the program");
                     scanner.close(); // CLose scanner once program has terminated
                     break;
+                default:
+                    System.out.println("Program Error has occurred :(, please try again");
             }
         }
     }

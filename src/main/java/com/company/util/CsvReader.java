@@ -13,6 +13,9 @@ import java.util.List;
 
 public class CsvReader {  // Generics used to reduce code reuse
 
+    private CsvReader(){
+    }
+
     protected static <T> List<T> csvConverter(String filePath, Class<T> clazz) throws FileNotFoundException {
 
         return new CsvToBeanBuilder<T>(new FileReader(filePath))
