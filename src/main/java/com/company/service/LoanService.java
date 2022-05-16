@@ -29,6 +29,7 @@ public class LoanService extends CsvReader{                 // Passing file path
     private final List<User> users = CsvReader.csvConverter("src/main/resources/USERS.csv", User.class);
 
     public LoanService() throws FileNotFoundException {
+        super();
         // FileNotFoundException Exception for class
     }
 
