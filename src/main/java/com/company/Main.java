@@ -8,11 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- // * Main Java class for controlling the program
- // * Author Dylan Cree B00826872
- */
-
 public class Main {
     private final Scanner scanner = new Scanner(System.in);
     private final SystemService systemService = new SystemService();

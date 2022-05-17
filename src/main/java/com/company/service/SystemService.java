@@ -7,12 +7,6 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import java.io.IOException;
 
-/**
- // * Java system service class
- *    Class made to abstract the user input from the methods in LoanService class so that they can be tested
- // * Author Dylan Cree B00826872
- */
-
 public class SystemService {
     private final Scanner scanner = new Scanner(System.in);
     private final LoanService loanService = new LoanService();

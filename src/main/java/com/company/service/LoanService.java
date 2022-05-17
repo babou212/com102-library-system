@@ -18,11 +18,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- // * Java Loan service class
- // * Author Dylan Cree B00826872
- */
-
 public class LoanService extends CsvReader{
     private final List<Item> items = CsvReader.csvConverter("src/main/resources/ITEMS.csv", Item.class);
     private final List<Loan> loans = CsvReader.csvConverter("src/main/resources/LOANS.csv", Loan.class);

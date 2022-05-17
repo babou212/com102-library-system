@@ -4,11 +4,6 @@ import com.opencsv.bean.CsvBindByName;
 
 import java.io.Serializable;
 
-/**
- // * Java beans data class for serialization and deserialization
- // * Author Dylan Cree B00826872
- */
-
 public class Item implements Serializable {
 
     @CsvBindByName(column = "Barcode")

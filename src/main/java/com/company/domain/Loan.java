@@ -6,11 +6,6 @@ import com.opencsv.bean.CsvDate;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-/**
- // * Java beans data class for serialization and deserialization
- // * Author Dylan Cree B00826872
- */
-
 public class Loan implements Serializable {
 
     @CsvBindByName(column = "Barcode")

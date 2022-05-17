@@ -13,12 +13,6 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Java test class using Junit 5.8.2
- * Author Dylan Cree B00826872
- * Please note that Junit 5 uses different annotations than JUnit 4
- */
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LoanServiceTest {
     private final LoanService loanService = new LoanService();

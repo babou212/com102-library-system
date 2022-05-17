@@ -6,11 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 
-/**
- * Java class to read CSV's using java generics/ openCSV library
- * Author Dylan Cree B00826872
- */
-
 public class CsvReader {
 
     protected CsvReader(){
