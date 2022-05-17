@@ -23,22 +23,22 @@ import java.util.stream.Collectors;
  // * Author Dylan Cree B00826872
  */
 
-public class LoanService extends CsvReader{                 // Passing file paths and class due to using java generics
+public class LoanService extends CsvReader{
     private final List<Item> items = CsvReader.csvConverter("src/main/resources/ITEMS.csv", Item.class);
     private final List<Loan> loans = CsvReader.csvConverter("src/main/resources/LOANS.csv", Loan.class);
     private final List<User> users = CsvReader.csvConverter("src/main/resources/USERS.csv", User.class);
 
     public LoanService() throws FileNotFoundException {
         super();
-        // FileNotFoundException Exception for class
+        // FileNotFoundException Exception for constructor
     }
 
-    public List<Loan> getLoans() {  // Getter used for testing purposes 
+    public List<Loan> getLoans() {
         return loans;
     }
 
     public void printLoans() {
-        loans.forEach(System.out::println); // Printing stream to print all list objects on new line
+        loans.forEach(System.out::println);
     }
 
     public void printItems() {

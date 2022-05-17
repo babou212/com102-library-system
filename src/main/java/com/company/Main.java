@@ -18,7 +18,7 @@ public class Main {
     private final SystemService systemService = new SystemService();
 
     public Main() throws FileNotFoundException {
-        // FileNotFoundException Exception for class
+        // FileNotFoundException Exception for constructor
     }
 
     public static void main(String[] args) throws IOException, CsvRequiredFieldEmptyException,
@@ -27,24 +27,24 @@ public class Main {
         main.programStart();
     }
                                                                                           
-    private void programStart() throws IOException, CsvRequiredFieldEmptyException,  // Method to control the operation of the program
+    private void programStart() throws IOException, CsvRequiredFieldEmptyException,
             CsvDataTypeMismatchException{ 
         boolean isQuit = false;
         int menu = 0;
 
-        printInstructions(); // Method Call to print program instructions
+        printInstructions();
 
         while (!isQuit) {
                 System.out.println("Enter your choice: ");
 
-                if(scanner.hasNextInt()) {   // Validation to ensure user cannot crash the program by passing incorrect data type
+                if(scanner.hasNextInt()) {
                     menu = scanner.nextInt();
                 }else {
                     System.out.println("\nPlease enter a valid option");
-                    scanner.next(); // Scanner next call to clear input buffer
+                    scanner.next();
                 }
 
-            switch (menu) {  // Switch statement to control program 
+            switch (menu) {
                 case 0:
                     printInstructions();
                     break;
@@ -67,7 +67,7 @@ public class Main {
                     systemService.writeLoan();
                     isQuit = true;
                     System.out.println("User has terminated the program");
-                    scanner.close(); // CLose scanner once program has terminated
+                    scanner.close();
                     break;
                 default:
                     System.out.println("Program Error has occurred :(, please try again");
@@ -75,7 +75,7 @@ public class Main {
         }
     }
 
-    private void printInstructions() {  // Method to print menu options to the user
+    private void printInstructions() {
         System.out.println("\nPress ");
         System.out.println("\t 0 - To print menu options");
         System.out.println("\t 1 - To Issue new loan");

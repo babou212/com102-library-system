@@ -11,9 +11,9 @@ import java.time.LocalDate;
  // * Author Dylan Cree B00826872
  */
 
-public class Loan implements Serializable { // Serializable marker interface for java beans class
+public class Loan implements Serializable {
 
-    @CsvBindByName(column = "Barcode")  // @CsvBindByName openCSV command
+    @CsvBindByName(column = "Barcode")
     private String barcode;
 
     @CsvBindByName(column = "User_id")
@@ -30,7 +30,7 @@ public class Loan implements Serializable { // Serializable marker interface for
     @CsvBindByName(column = "numRenews")
     private int numRenews;
 
-    public Loan() {  // No args constructor for java beans class
+    public Loan() {
     }
 
     public Loan(String barcode, String userId, LocalDate issueDate, LocalDate dueDate, int numRenews) {

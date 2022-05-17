@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Please note that Junit 5 uses different annotations than JUnit 4
  */
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS) // Annotation used so @BeforeAll issueNewLoanForTestingPurposes method can remain non-static
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LoanServiceTest {
     private final LoanService loanService = new LoanService();
 
@@ -35,17 +35,14 @@ class LoanServiceTest {
     }
     
     @Test
-    void issueLoanShouldProperlyMapNewLoanIfCorrectBookDataIsPassed() { //Given when then, used instead of AAA because of familiarity
-       // Given
+    void issueLoanShouldProperlyMapNewLoanIfCorrectBookDataIsPassed() {
        String barcode = "169865085";
        String userId = "B00359213";
        
-       // When
        loanService.issueLoan(userId, barcode);
        List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode)&&
                loan.getUserId().equals(userId)).collect(Collectors.toList());
        
-       // Then
        assertEquals(1, result.size());
     }
 
@@ -73,7 +70,6 @@ class LoanServiceTest {
         assertEquals(1, result.size());
     }
 
-
     @Test
     void returnItemShouldRemoveLoanIfDueDateIsAfterOrEqualCurrentDate() {
         String barcode = "169865085";
@@ -95,7 +91,7 @@ class LoanServiceTest {
         List<Loan> result = loanService.getLoans().stream().filter(loan -> loan.getBarcode().equals(barcode))
                 .collect(Collectors.toList());
 
-        assertEquals(1, result.size());
+        assertEquals(0, result.size());
     }
 
     @Test

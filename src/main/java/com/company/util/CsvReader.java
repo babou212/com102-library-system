@@ -11,7 +11,7 @@ import java.util.List;
  * Author Dylan Cree B00826872
  */
 
-public class CsvReader {  // Generics used to reduce code reuse
+public class CsvReader {
 
     protected CsvReader(){
     }

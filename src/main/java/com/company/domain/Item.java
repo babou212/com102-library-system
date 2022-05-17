@@ -9,9 +9,9 @@ import java.io.Serializable;
  // * Author Dylan Cree B00826872
  */
 
-public class Item implements Serializable { // Serializable interface for java beans class
+public class Item implements Serializable {
 
-    @CsvBindByName(column = "Barcode") // @CsvBindByName openCSV command
+    @CsvBindByName(column = "Barcode")
     private String barcode;
 
     @CsvBindByName(column = "Author/Artist")
@@ -29,7 +29,7 @@ public class Item implements Serializable { // Serializable interface for java b
     @CsvBindByName(column = "ISBN")
     private String ISBN;
 
-    public Item() {   // No args constructor for java beans class
+    public Item() {
     }
 
     public Item(String barcode, String author, String title, String year, String type, String ISBN) {

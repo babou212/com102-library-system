@@ -18,7 +18,7 @@ public class SystemService {
     private final LoanService loanService = new LoanService();
 
     public SystemService() throws FileNotFoundException {
-        // TODO document why this constructor is empty
+        // FileNotFoundException Exception for constructor
     }
 
     public void printLoans() {
