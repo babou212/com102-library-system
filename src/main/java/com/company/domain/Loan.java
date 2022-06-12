@@ -6,7 +6,7 @@ import com.opencsv.bean.CsvDate;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Loan implements Serializable {
+public final class Loan implements Serializable {
 
     @CsvBindByName(column = "Barcode")
     private String barcode;

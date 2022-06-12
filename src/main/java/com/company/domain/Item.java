@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 
 import java.io.Serializable;
 
-public class Item implements Serializable {
+public final class Item implements Serializable {
 
     @CsvBindByName(column = "Barcode")
     private String barcode;
@@ -25,15 +25,6 @@ public class Item implements Serializable {
     private String ISBN;
 
     public Item() {
-    }
-
-    public Item(String barcode, String author, String title, String year, String type, String ISBN) {
-        this.barcode = barcode;
-        this.author = author;
-        this.title = title;
-        this.year = year;
-        this.type = type;
-        this.ISBN = ISBN;
     }
 
     @Override

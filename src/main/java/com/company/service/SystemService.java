@@ -1,13 +1,13 @@
 package com.company.service;
 
-import java.io.FileNotFoundException;
-import java.util.*;
-
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-import java.io.IOException;
 
-public class SystemService {
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
+public final class SystemService {
     private final Scanner scanner = new Scanner(System.in);
     private final LoanService loanService = new LoanService();
 
@@ -39,7 +39,7 @@ public class SystemService {
         loanService.returnItem(barcode);
     }
 
-    public void writeLoan()throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
+    public void writeLoan() throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
         loanService.writeLoan();
     }
 

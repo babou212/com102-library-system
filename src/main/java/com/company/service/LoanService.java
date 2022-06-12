@@ -18,7 +18,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LoanService extends CsvReader{
+public final class LoanService extends CsvReader {
     private final List<Item> items = CsvReader.csvConverter("src/main/resources/ITEMS.csv", Item.class);
     private final List<Loan> loans = CsvReader.csvConverter("src/main/resources/LOANS.csv", Loan.class);
     private final List<User> users = CsvReader.csvConverter("src/main/resources/USERS.csv", User.class);

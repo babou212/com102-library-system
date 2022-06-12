@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CsvReader {
 
-    protected CsvReader(){
+    protected CsvReader() {
     }
 
     protected static <T> List<T> csvConverter(String filePath, Class<T> clazz) throws FileNotFoundException {
