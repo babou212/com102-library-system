@@ -1,9 +1,12 @@
 package com.company.domain;
 
 import com.opencsv.bean.CsvBindByName;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
+@NoArgsConstructor
+@Data
 public final class User implements Serializable {
 
     @CsvBindByName(column = "User_id")
@@ -17,21 +20,4 @@ public final class User implements Serializable {
     
     @CsvBindByName(column = "email")
     private String email;
-
-    public User() {
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id='" + userId + '\'' +
-                ", first_name='" + firstName + '\'' +
-                ", last_name='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
-
-    public String getUserId() {
-        return userId;
-    }
 }

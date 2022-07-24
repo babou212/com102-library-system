@@ -2,10 +2,16 @@ package com.company.domain;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvDate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public final class Loan implements Serializable {
 
     @CsvBindByName(column = "Barcode")
@@ -25,17 +31,6 @@ public final class Loan implements Serializable {
     @CsvBindByName(column = "numRenews")
     private int numRenews;
 
-    public Loan() {
-    }
-
-    public Loan(String barcode, String userId, LocalDate issueDate, LocalDate dueDate, int numRenews) {
-        this.barcode = barcode;
-        this.userId = userId;
-        this.issueDate = issueDate;
-        this.dueDate = dueDate;
-        this.numRenews = numRenews;
-    }
-
     @Override  
     public String toString() {
         return "Loan{" +
@@ -47,29 +42,5 @@ public final class Loan implements Serializable {
                 + dueDate.getYear() +  '\'' +
                 ", numRenews=" + numRenews +
                 '}';
-    }
-
-    public String getBarcode() {
-        return barcode;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public int getNumRenews() {
-        return numRenews;
-    }
-
-    public void setNumRenews(int numRenews) {
-        this.numRenews = numRenews;
-    }
-
-    public String getUserId() {
-        return userId;
     }
 }

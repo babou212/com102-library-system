@@ -24,7 +24,6 @@ public final class LoanService extends CsvReader {
     private final List<User> users = CsvReader.csvConverter("src/main/resources/USERS.csv", User.class);
 
     public LoanService() throws FileNotFoundException {
-        super();
         // FileNotFoundException Exception for constructor
     }
 
@@ -116,7 +115,7 @@ public final class LoanService extends CsvReader {
                     loan.setDueDate(dueDate);
                     loan.setNumRenews(loan.getNumRenews() + 1);
                     System.out.println("Multimedia loan renewed");
-                } else if (loan.getBarcode().equals(barcode)&& quitElseIf[0] == 0){
+                } else if (loan.getBarcode().equals(barcode)&& quitElseIf[0] == 0) {
                     System.out.println("Loan cannot be renewed");
                     quitElseIf[0]++;
                 }

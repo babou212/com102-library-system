@@ -1,9 +1,12 @@
 package com.company.domain;
 
 import com.opencsv.bean.CsvBindByName;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
+@NoArgsConstructor
+@Data
 public final class Item implements Serializable {
 
     @CsvBindByName(column = "Barcode")
@@ -23,27 +26,4 @@ public final class Item implements Serializable {
 
     @CsvBindByName(column = "ISBN")
     private String ISBN;
-
-    public Item() {
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "barcode='" + barcode + '\'' +
-                ", author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                ", year='" + year + '\'' +
-                ", type='" + type + '\'' +
-                ", ISBN='" + ISBN + '\'' +
-                '}';
-    }
-
-    public String getBarcode() {
-        return barcode;
-    }
-
-    public String getType() {
-        return type;
-    }
 }
