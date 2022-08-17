@@ -1,6 +1,6 @@
 # Simple Library management program 
 
-created for a University Java module  
+Created for a University Java module  
 
 ## Tech Stack
 
