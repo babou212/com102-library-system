@@ -8,7 +8,7 @@ Created for a University Java module
 
 ## Features
 
-= Ability to take user data from CLI 
+- Ability to take user data from CLI 
 - Ability to renew loans and create new loans
 - Ability to view all users, loans and items
 
