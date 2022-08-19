@@ -6,6 +6,8 @@ Created for a University Java module
 
 **Server:** java 11, openCSV
 
+**Build Tool:** Maven 
+
 ## Features
 
 - Ability to take user data from CLI 
